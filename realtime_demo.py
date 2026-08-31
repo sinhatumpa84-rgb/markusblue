@@ -1,9 +1,3 @@
-"""
-SIH26052 — Real-Time Streaming Audio Demo
-Simulates streaming microphone input through rolling-window ML inference,
-triggers deterministic hearing protection, and preserves speech intelligibility.
-"""
-
 import os
 import time
 import argparse
@@ -11,105 +5,77 @@ import numpy as np
 import soundfile as sf
 import torch
 
-from src.training.models import get_model
-from src.inference.streaming_detector import StreamingImpulseDetector
+from src.inference.markusblue import MARKUSBLUE
 
 def run_realtime_demo():
-    parser = argparse.ArgumentParser(description="Real-time streaming tactical audio demonstration.")
-    parser.add_argument("--input_wav", type=str, default=None, help="Input WAV file for simulation")
-    parser.add_argument("--weights", type=str, default="models/tactical_edge_model_best.pt", help="Path to edge model weights")
-    parser.add_argument("--hop_ms", type=int, default=25, help="Streaming step in milliseconds (default 25ms)")
-    parser.add_argument("--threshold", type=float, default=0.65, help="Impulse detection threshold")
+    parser = argparse.ArgumentParser(description="MARKUSBLUE Real-Time Streaming Audio Demo")
+    parser.add_argument("--input_wav", type=str, default="datasets/gunshot/gunshot_session_0_0.wav", help="Input WAV file")
+    parser.add_argument("--model_path", type=str, default="models/markusblue_final.pt", help="Path to student model")
+    parser.add_argument("--chunk_size", type=int, default=512, help="Streaming audio block size in samples")
+    parser.add_argument("--target_rms_dbfs", type=float, default=-16.0, help="Target conversational loudness in dBFS")
     args = parser.parse_args()
+
+    print("==================================================")
+    print("MARKUSBLUE v7.1.0 — Real-Time Streaming Audio Demo")
+    print("Pipeline: Capture -> AI Speech Enhancement -> VAD -> AGC -> DRC -> Limiter -> Output")
+    print("==================================================")
+
+    if not os.path.exists(args.input_wav):
+        wav_candidates = [os.path.join("datasets/speech", f) for f in os.listdir("datasets/speech") if f.endswith(".wav")]
+        args.input_wav = wav_candidates[0]
+
+    audio_data, sr = sf.read(args.input_wav)
+    if len(audio_data.shape) > 1:
+        audio_data = np.mean(audio_data, axis=1)
+
+    print(f"Loaded: '{args.input_wav}' ({len(audio_data)} samples, {sr} Hz, {len(audio_data)/sr:.2f}s)")
     
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print("="*60)
-    print("SIH26052: REAL-TIME STREAMING AUDIO DEMO")
-    print("="*60)
-    print(f"[*] Hardware Execution Device: {device}")
-    
-    # 1. Prepare Audio Stream
-    sr = 16000
-    if args.input_wav and os.path.exists(args.input_wav):
-        audio, _ = sf.read(args.input_wav, dtype='float32')
-        if audio.ndim > 1:
-            audio = np.mean(audio, axis=1)
-        print(f"[*] Loaded input file: '{args.input_wav}' ({len(audio)/sr:.2f}s)")
-    else:
-        # Create synthetic 3-second tactical test stream (Speech -> Gunshot Impulse -> Speech)
-        print("[*] Generating simulated tactical acoustic sequence (Speech -> Gunshot -> Speech)...")
-        t = np.linspace(0, 3.0, 3 * sr, endpoint=False)
-        
-        # Continuous speech
-        speech = 0.4 * np.sin(2 * np.pi * 220 * t) * (0.5 + 0.5 * np.sin(2 * np.pi * 4 * t))
-        # Background hum
-        bg = 0.1 * np.random.randn(len(t))
-        # Sudden gunshot impulse at t = 1.2s
-        impulse = np.zeros_like(t)
-        imp_start = int(1.2 * sr)
-        imp_len = int(0.15 * sr)
-        decay = np.exp(-np.linspace(0, 8, imp_len))
-        impulse[imp_start:imp_start + imp_len] = 0.95 * np.sin(2 * np.pi * 1200 * np.linspace(0, 0.15, imp_len)) * decay
-        
-        audio = speech + bg + impulse
-        audio = np.clip(audio, -1.0, 1.0).astype(np.float32)
-        
-    # 2. Load Model & Streaming Detector
-    model = get_model("edge", num_classes=4)
-    if os.path.exists(args.weights):
-        model.load_state_dict(torch.load(args.weights, map_location=device))
-        print(f"[OK] Loaded Edge Model from '{args.weights}'")
-    else:
-        print(f"[!] Running with default weights (Model not trained yet).")
-        
-    chunk_samples = int((args.hop_ms / 1000.0) * sr) # e.g. 400 samples = 25ms
-    detector = StreamingImpulseDetector(
-        model=model,
-        device=device,
+    pipeline = MARKUSBLUE(
+        model_path=args.model_path if os.path.exists(args.model_path) else None,
         sr=sr,
-        hop_size_samples=chunk_samples,
-        feature_mode="edge",
-        detection_threshold=args.threshold
+        target_rms_dbfs=args.target_rms_dbfs
     )
-    
-    # 3. Process Stream with Console Animation
-    print("\n" + "-"*75)
-    print(f"{'Time (s)':<10} | {'State':<22} | {'P(Impulse)':<12} | {'Latency':<10} | {'Live Level'}")
-    print("-"*75)
-    
-    num_chunks = len(audio) // chunk_samples
-    out_chunks = []
-    
+
+    processed_blocks = []
+    latencies = []
+    chunk_size = args.chunk_size
+
+    print("-" * 80)
+    print(f"{'Time (s)':<10} | {'Input RMS (dBFS)':<18} | {'Output RMS (dBFS)':<18} | {'Latency (ms)':<14} | {'RTF':<8}")
+    print("-" * 80)
+
+    num_chunks = len(audio_data) // chunk_size
     for i in range(num_chunks):
-        chunk = audio[i * chunk_samples : (i + 1) * chunk_samples]
-        curr_time = (i * chunk_samples) / sr
+        chunk = audio_data[i * chunk_size : (i + 1) * chunk_size].astype(np.float32)
         
-        out_chunk, state, prob, lat = detector.process_chunk(chunk)
-        out_chunks.append(out_chunk)
+        t0 = time.perf_counter()
+        out_chunk = pipeline.enhance(chunk)
+        t_proc = (time.perf_counter() - t0) * 1000.0
         
-        # Audio level bar
-        raw_level = np.max(np.abs(chunk))
-        bar_len = int(raw_level * 20)
-        bar = "#" * bar_len + "-" * (20 - bar_len)
+        latencies.append(t_proc)
+        processed_blocks.append(out_chunk)
         
-        # Highlight state transitions
-        state_str = state.value
-        if state_str == "PROTECTION_TRIGGERED":
-            state_str = f">> {state_str} <<"
-            
-        print(f"{curr_time:<10.2f} | {state_str:<22} | {prob*100:<10.1f}% | {lat:<8.2f}ms | [{bar}]")
+        in_rms_db = 20.0 * np.log10(max(1e-5, np.sqrt(np.mean(chunk ** 2))))
+        out_rms_db = 20.0 * np.log10(max(1e-5, np.sqrt(np.mean(out_chunk ** 2))))
+        chunk_duration_ms = (chunk_size / sr) * 1000.0
+        rtf = t_proc / chunk_duration_ms
         
-    processed_audio = np.concatenate(out_chunks)
+        if i % 5 == 0 or i == num_chunks - 1:
+            timestamp = (i * chunk_size) / sr
+            print(f"{timestamp:<10.2f} | {in_rms_db:<18.2f} | {out_rms_db:<18.2f} | {t_proc:<14.2f} | {rtf:<8.3f}")
+
+    print("-" * 80)
+    full_output = np.concatenate(processed_blocks) if processed_blocks else np.array([], dtype=np.float32)
     
-    # Save output
     os.makedirs("reports", exist_ok=True)
     out_path = "reports/realtime_demo_output.wav"
-    sf.write(out_path, processed_audio, sr, subtype='PCM_16')
-    print("-"*75)
-    print(f"\n[OK] Real-time simulation complete!")
-    print(f"[OK] Saved protected & speech-preserved audio to: '{out_path}'")
-    print(f"[OK] Mean inference latency: {np.mean(detector.inference_latencies_ms):.2f} ms")
-    print("="*60 + "\n")
+    sf.write(out_path, full_output, sr)
+    
+    mean_latency = float(np.mean(latencies))
+    print(f"[OK] Real-time streaming simulation complete!")
+    print(f"[OK] Mean Chunk Latency: {mean_latency:.2f} ms per {chunk_size/sr*1000:.1f} ms audio block")
+    print(f"[OK] Mean Real-Time Factor: {mean_latency / (chunk_size/sr*1000):.3f} (Values < 1.0 indicate real-time capable)")
+    print(f"[OK] Enhanced audio saved to: '{out_path}'")
 
 if __name__ == "__main__":
     run_realtime_demo()

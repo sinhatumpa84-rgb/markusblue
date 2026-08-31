@@ -1,0 +1,70 @@
+{
+  "A_clean_speech": {
+    "rms": 0.1146,
+    "rms_dbfs": -18.82,
+    "peak": 0.8079,
+    "peak_dbfs": -1.85,
+    "peak_to_rms": 7.05,
+    "snr_db": 101.18,
+    "sisdr_db": 123.22,
+    "stoi_percent": 100.0
+  },
+  "B_noisy_input": {
+    "rms": 0.1436,
+    "rms_dbfs": -16.86,
+    "peak": 1.0,
+    "peak_dbfs": 0.0,
+    "peak_to_rms": 6.96,
+    "snr_db": 2.38,
+    "sisdr_db": 2.37,
+    "stoi_percent": 79.58
+  },
+  "C_ai_enhanced": {
+    "rms": 0.1409,
+    "rms_dbfs": -17.02,
+    "peak": 1.0,
+    "peak_dbfs": 0.0,
+    "peak_to_rms": 7.1,
+    "snr_db": 2.75,
+    "sisdr_db": 2.69,
+    "stoi_percent": 80.62
+  },
+  "D_ai_enhanced_agc": {
+    "rms": 0.1422,
+    "rms_dbfs": -16.94,
+    "peak": 1.0062,
+    "peak_dbfs": 0.05,
+    "peak_to_rms": 7.08,
+    "snr_db": 2.66,
+    "sisdr_db": 2.68,
+    "stoi_percent": 80.6
+  },
+  "E_ai_enhanced_agc_drc": {
+    "rms": 0.1242,
+    "rms_dbfs": -18.12,
+    "peak": 0.8373,
+    "peak_dbfs": -1.54,
+    "peak_to_rms": 6.74,
+    "snr_db": 3.55,
+    "sisdr_db": 2.51,
+    "stoi_percent": 80.04
+  },
+  "F_ai_enhanced_agc_drc_limiter": {
+    "rms": 0.1242,
+    "rms_dbfs": -18.12,
+    "peak": 0.8373,
+    "peak_dbfs": -1.54,
+    "peak_to_rms": 6.74,
+    "snr_db": -3.53,
+    "sisdr_db": -28.66,
+    "stoi_percent": 0.0
+  },
+  "performance": {
+    "ai_enhancement_latency_ms": 13.22,
+    "total_pipeline_latency_ms": 87.89,
+    "real_time_factor": 0.0879,
+    "student_parameters": 18465,
+    "int8_model_size_kb": 18.04,
+    "sram_usage_kb": 24.8
+  }
+}

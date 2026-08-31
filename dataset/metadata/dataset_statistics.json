@@ -1,0 +1,22 @@
+{
+  "project": "MARKUSBLUE",
+  "version": "7.0.00",
+  "sample_rate_hz": 16000,
+  "channels": 1,
+  "bit_depth": "PCM_16",
+  "benchmark_dataset": {
+    "total_files": 13200,
+    "classes": {
+      "gunshot": 6000,
+      "speech": 2400,
+      "background_noise": 2400,
+      "other_impulse": 2400
+    }
+  },
+  "extended_datasets": {
+    "data_processed_files": 15200,
+    "data_extracted_files": 12407,
+    "total_repository_wav_files": 40807,
+    "total_dataset_size_gb": 4.574
+  }
+}
