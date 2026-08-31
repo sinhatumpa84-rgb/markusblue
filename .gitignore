@@ -1,0 +1,46 @@
+# Python & Environment Exclusions
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Secrets & Credentials
+.env
+.env.*
+*.pem
+*.key
+*.token
+credentials.json
+
+# IDE & OS Temporary Files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs & Temporary Scratch Files
+*.log
+tmp/
+temp/
+scratch/
