@@ -1,0 +1,18 @@
+{
+  "model_type": "baseline",
+  "feature_mode": "baseline",
+  "total_parameters": 470820,
+  "hyperparameters": {
+    "epochs": 25,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "patience": 7,
+    "seed": 42,
+    "loss": "Multi-Class Focal Loss (gamma=2.0)"
+  },
+  "dataset_version": "v2_hard_negatives_zero_leakage",
+  "train_samples": 4015,
+  "val_samples": 764,
+  "best_val_accuracy": 1.0,
+  "best_val_loss": 0.0002453240270341364
+}

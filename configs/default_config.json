@@ -1,0 +1,73 @@
+{
+  "project_name": "SIH26052_Tactical_Audio_AI",
+  "random_seed": 42,
+  "audio": {
+    "sample_rate": 16000,
+    "duration_sec": 1.0,
+    "target_samples": 16000,
+    "channels": 1,
+    "bit_depth": 16,
+    "preserve_dynamics": true
+  },
+  "features": {
+    "n_fft": 1024,
+    "hop_length": 512,
+    "n_mels_baseline": 64,
+    "n_mels_edge": 32,
+    "n_mfcc": 13,
+    "f_min": 50,
+    "f_max": 8000
+  },
+  "taxonomy": {
+    "classes": [
+      "DANGEROUS_IMPULSE",
+      "NORMAL_SPEECH",
+      "BACKGROUND_NOISE",
+      "OTHER_IMPULSE"
+    ],
+    "num_classes": 4,
+    "primary_target_class": "DANGEROUS_IMPULSE"
+  },
+  "augmentation": {
+    "enable_train_aug": true,
+    "snr_min_db": -5.0,
+    "snr_max_db": 20.0,
+    "gain_min_db": -6.0,
+    "gain_max_db": 3.0,
+    "time_shift_max_ms": 100,
+    "reverb_probability": 0.35,
+    "mic_simulation_prob": 0.40,
+    "clipping_prob": 0.20,
+    "wind_sensor_noise_prob": 0.30
+  },
+  "training": {
+    "batch_size": 64,
+    "epochs": 35,
+    "learning_rate": 0.001,
+    "weight_decay": 1e-4,
+    "early_stopping_patience": 7,
+    "focal_loss_gamma": 2.0,
+    "impulse_class_weight": 2.5
+  },
+  "dsp": {
+    "attack_time_ms": 0.5,
+    "release_time_ms": 80.0,
+    "attenuation_db": -28.0,
+    "speech_band_low_hz": 300,
+    "speech_band_high_hz": 3400,
+    "detection_threshold": 0.65,
+    "recovery_threshold": 0.30
+  },
+  "paths": {
+    "gunsound_dir": "gunsound",
+    "raw_dir": "data/raw",
+    "extracted_dir": "data/extracted",
+    "processed_dir": "data/processed",
+    "metadata_dir": "data/metadata",
+    "splits_dir": "data/splits",
+    "features_dir": "data/features",
+    "models_dir": "models",
+    "embedded_dir": "embedded",
+    "reports_dir": "reports"
+  }
+}

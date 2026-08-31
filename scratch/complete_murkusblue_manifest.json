@@ -1,0 +1,51 @@
+{
+  "project": "murkusblue",
+  "github_owner": "sinhatumpa84-rgb",
+  "model": {
+    "name": "MARKUSBLUE",
+    "version": "7.0.00",
+    "full_name": "MARKUSBLUE Version 7.0.00",
+    "identifier": "MARKUSBLUE-v7.0.00",
+    "filename": "markusblue_v7.0.00_int8.tflite",
+    "size_bytes": 4160,
+    "size_kb": 4.06,
+    "sha256": "a3bd7d63d6dc63b239e51e90b95e011bbec3183494b8a5a9109da4e2231732af"
+  },
+  "dataset_files": 13200,
+  "total_dataset_size_mb": 403.39,
+  "total_dataset_duration": "3h 40m 0s",
+  "categories": {
+    "gunshot": {
+      "file_count": 6000,
+      "total_bytes": 192264000,
+      "total_mb": 183.36,
+      "total_duration_sec": 6000.0,
+      "total_duration_formatted": "100m 0s"
+    },
+    "speech": {
+      "file_count": 2400,
+      "total_bytes": 76905600,
+      "total_mb": 73.34,
+      "total_duration_sec": 2400.0,
+      "total_duration_formatted": "40m 0s"
+    },
+    "background_noise": {
+      "file_count": 2400,
+      "total_bytes": 76905600,
+      "total_mb": 73.34,
+      "total_duration_sec": 2400.0,
+      "total_duration_formatted": "40m 0s"
+    },
+    "other_impulse": {
+      "file_count": 2400,
+      "total_bytes": 76905600,
+      "total_mb": 73.34,
+      "total_duration_sec": 2400.0,
+      "total_duration_formatted": "40m 0s"
+    }
+  },
+  "git_lfs": "YES",
+  "files_excluded": "None (AudioSet raw YouTube audio excluded at source, only open research audio and segment metadata included)",
+  "secrets_found": "NO",
+  "old_repository_modified": "NO"
+}

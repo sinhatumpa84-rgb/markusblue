@@ -1,0 +1,43 @@
+{
+  "execution_mode": "DESKTOP / SIMULATED EMBEDDED ESTIMATE",
+  "sample_rate_hz": 16000,
+  "dma_buffer_size_samples": 512,
+  "dma_buffer_latency_ms": 32.0,
+  "dsp_limiter_attack_time_ms": 0.5,
+  "dsp_limiter_release_time_ms": 80.0,
+  "dsp_frame_processing_latency_ms": {
+    "mean_ms": 2.0627,
+    "max_ms": 5.9984
+  },
+  "ai_inference_latency_ms": {
+    "mean_ms": 6.932,
+    "p95_ms": 3.938,
+    "max_ms": 599.699
+  },
+  "esp32_s3_estimated_hardware_profile": {
+    "core_0_dsp_utilization_percent": 3.8,
+    "core_1_ai_inference_latency_ms": 11.9,
+    "sram_usage_bytes": 24800,
+    "flash_int8_model_bytes": 4160
+  },
+  "acoustic_protection_metrics": {
+    "input_peak_amplitude": 1.2961,
+    "protected_peak_amplitude": 0.2091,
+    "peak_attenuation_db": 15.85,
+    "hearing_protection_clamped": true
+  },
+  "state_machine_transitions": [
+    {
+      "time_ms": 0.0,
+      "state": "NORMAL",
+      "ai_impulse_prob": 0.926,
+      "gain_linear": 0.0398
+    },
+    {
+      "time_ms": 32.0,
+      "state": "PROTECTION_TRIGGERED",
+      "ai_impulse_prob": 0.908,
+      "gain_linear": 0.0398
+    }
+  ]
+}

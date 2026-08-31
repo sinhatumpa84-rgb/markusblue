@@ -1,0 +1,86 @@
+{
+  "model_b_edge": {
+    "device": "cuda",
+    "input_shape": [
+      1,
+      1,
+      32,
+      32
+    ],
+    "total_parameters": 3916,
+    "trainable_parameters": 3916,
+    "float32_size_mb": 0.0149,
+    "int8_estimated_size_kb": 3.82,
+    "latency_stats_ms": {
+      "mean": 0.613,
+      "median": 0.552,
+      "p95": 0.939,
+      "p99": 1.272,
+      "min": 0.503,
+      "max": 1.627
+    },
+    "esp32_s3_feasibility": {
+      "estimated_flash_usage_kb": 3.82,
+      "estimated_sram_usage_kb": 24.5,
+      "estimated_inference_time_ms": 11.93,
+      "target_clock_mhz": 240,
+      "supported": true
+    }
+  },
+  "model_a_baseline": {
+    "device": "cuda",
+    "input_shape": [
+      1,
+      1,
+      64,
+      32
+    ],
+    "total_parameters": 470820,
+    "trainable_parameters": 470820,
+    "float32_size_mb": 1.796,
+    "int8_estimated_size_kb": 459.79,
+    "latency_stats_ms": {
+      "mean": 1.107,
+      "median": 0.926,
+      "p95": 1.974,
+      "p99": 2.252,
+      "min": 0.804,
+      "max": 2.488
+    },
+    "esp32_s3_feasibility": {
+      "estimated_flash_usage_kb": 459.79,
+      "estimated_sram_usage_kb": 24.5,
+      "estimated_inference_time_ms": 18.0,
+      "target_clock_mhz": 240,
+      "supported": true
+    }
+  },
+  "model_b_edge_cpu": {
+    "device": "cpu",
+    "input_shape": [
+      1,
+      1,
+      32,
+      32
+    ],
+    "total_parameters": 3916,
+    "trainable_parameters": 3916,
+    "float32_size_mb": 0.0149,
+    "int8_estimated_size_kb": 3.82,
+    "latency_stats_ms": {
+      "mean": 1.735,
+      "median": 1.701,
+      "p95": 2.056,
+      "p99": 2.235,
+      "min": 1.358,
+      "max": 2.341
+    },
+    "esp32_s3_feasibility": {
+      "estimated_flash_usage_kb": 3.82,
+      "estimated_sram_usage_kb": 24.5,
+      "estimated_inference_time_ms": 11.93,
+      "target_clock_mhz": 240,
+      "supported": true
+    }
+  }
+}

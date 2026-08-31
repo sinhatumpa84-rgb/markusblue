@@ -1,0 +1,46 @@
+{
+  "A_Variable_SNR": {
+    "-5 dB": {
+      "recall_percent": 97.5,
+      "tested": 40
+    },
+    "0 dB": {
+      "recall_percent": 97.5,
+      "tested": 40
+    },
+    "5 dB": {
+      "recall_percent": 97.5,
+      "tested": 40
+    },
+    "10 dB": {
+      "recall_percent": 97.5,
+      "tested": 40
+    },
+    "20 dB": {
+      "recall_percent": 100.0,
+      "tested": 40
+    }
+  },
+  "B_Rapid_Burst_Fire": {
+    "recall_percent": 100.0,
+    "tested": 30
+  },
+  "D_Speech_Plus_Blast": {
+    "recall_percent": 100.0,
+    "tested": 30
+  },
+  "F_Vehicle_Wind_Speech_Clutter": {
+    "rejection_percent": 95.0,
+    "false_alarm_rate": 5.0,
+    "tested": 40
+  },
+  "H_Hard_Negative_Impacts": {
+    "rejection_percent": 100.0,
+    "false_alarm_rate": 0.0,
+    "tested": 50
+  },
+  "K_Saturated_MEMS_Clipping": {
+    "recall_percent": 100.0,
+    "tested": 30
+  }
+}

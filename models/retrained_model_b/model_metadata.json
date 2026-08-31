@@ -1,0 +1,20 @@
+{
+  "model_name": "SIH26052_Tactical_Edge_AI_Model",
+  "input_shape": [
+    1,
+    1,
+    32,
+    32
+  ],
+  "output_shape": [
+    1,
+    4
+  ],
+  "classes": [
+    "DANGEROUS_IMPULSE",
+    "NORMAL_SPEECH",
+    "BACKGROUND_NOISE",
+    "OTHER_IMPULSE"
+  ],
+  "quantization": "INT8"
+}

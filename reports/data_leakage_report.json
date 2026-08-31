@@ -1,0 +1,13 @@
+{
+  "direct_path_leakage": 0,
+  "gunshot_source_overlap_train_val": 0,
+  "gunshot_source_overlap_train_test": 0,
+  "gunshot_source_overlap_val_test": 0,
+  "exact_audio_hash_leakage": 0,
+  "synthetic_classes_identified": [
+    "speech",
+    "background",
+    "other_impulse"
+  ],
+  "real_gunshot_samples_count": 2000
+}

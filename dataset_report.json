@@ -1,0 +1,332 @@
+{
+  "summary": {
+    "total_files_in_gunsound": 26,
+    "zip_count": 24,
+    "csv_count": 2
+  },
+  "zip_archives": {},
+  "audioset_analysis": {
+    "total_segments_in_balanced_csv": 22160,
+    "gunshot_annotated_segments_count": 360,
+    "gunshot_mids_matched": {
+      "/m/032s66": "Gunshot, gunfire",
+      "/m/04zjc": "Machine gun",
+      "/m/0_1c": "Artillery fire",
+      "/m/073cg4": "Cap gun"
+    },
+    "sample_gunshot_segments": [
+      {
+        "ytid": "--aaILOrkII",
+        "start_time": 200.0,
+        "end_time": 210.0,
+        "mid": "/m/032s66",
+        "label_name": "Gunshot, gunfire"
+      },
+      {
+        "ytid": "--aaILOrkII",
+        "start_time": 200.0,
+        "end_time": 210.0,
+        "mid": "/m/073cg4",
+        "label_name": "Cap gun"
+      },
+      {
+        "ytid": "-RAdrtCW1hI",
+        "start_time": 70.0,
+        "end_time": 80.0,
+        "mid": "/m/032s66",
+        "label_name": "Gunshot, gunfire"
+      },
+      {
+        "ytid": "-RAdrtCW1hI",
+        "start_time": 70.0,
+        "end_time": 80.0,
+        "mid": "/m/073cg4",
+        "label_name": "Cap gun"
+      },
+      {
+        "ytid": "-cQV8iXK3pQ",
+        "start_time": 0.0,
+        "end_time": 10.0,
+        "mid": "/m/032s66",
+        "label_name": "Gunshot, gunfire"
+      }
+    ]
+  },
+  "audio_statistics": {
+    "total_audio_files_scanned": 12874,
+    "total_audio_duration_seconds": 21552.54,
+    "total_audio_duration_hours": 5.99,
+    "sample_rate_distribution": {
+      "96000": 2709,
+      "44100": 10164,
+      "48000": 1
+    },
+    "channel_distribution": {
+      "2": 2709,
+      "1": 10165
+    },
+    "subtype_distribution": {
+      "PCM_16": 10726,
+      "FLOAT": 2148
+    },
+    "class_distribution": {
+      "DANGEROUS_IMPULSE (Zoom Field Gunshot)": 2709,
+      "DANGEROUS_IMPULSE (C3GD Gunshot)": 8017,
+      "DANGEROUS_IMPULSE (Edge Gunshot)": 2148
+    }
+  },
+  "duplicates": [
+    {
+      "type": "duplicate_zip_file",
+      "file1": "Kimber45_Zoom (1).zip",
+      "file2": "Kimber45_Zoom.zip",
+      "size_bytes": 20889485
+    },
+    {
+      "type": "duplicate_zip_file",
+      "file1": "Lorcin380_Zoom (1).zip",
+      "file2": "Lorcin380_Zoom.zip",
+      "size_bytes": 19363585
+    },
+    {
+      "type": "duplicate_zip_file",
+      "file1": "M16_Zoom (1).zip",
+      "file2": "M16_Zoom.zip",
+      "size_bytes": 22878969
+    },
+    {
+      "type": "duplicate_zip_file",
+      "file1": "SW38SP_Zoom (1).zip",
+      "file2": "SW38SP_Zoom.zip",
+      "size_bytes": 19211333
+    }
+  ],
+  "corrupted_files": [],
+  "missing_files": [],
+  "extracted_zip_contents_preview": {
+    "BoltAction22_Zoom (1).zip": {
+      "total_entries": 114,
+      "wav_files": 113,
+      "examples": [
+        "BoltAction22_Zoom/ZM_184D_S04.wav",
+        "BoltAction22_Zoom/ZM_104A_S05.wav",
+        "BoltAction22_Zoom/ZM_044A_S05.wav"
+      ]
+    },
+    "C3GD-Dataset.zip": {
+      "total_entries": 8036,
+      "wav_files": 8017,
+      "examples": [
+        "C3GD-Dataset/data/0-oh_farm-czusa_457-ALICE-R5zBOntDcTqx-0.wav",
+        "C3GD-Dataset/data/0-oh_farm-czusa_457-ALICE-R5zBOntDcTqx-1.wav",
+        "C3GD-Dataset/data/0-oh_farm-czusa_457-ALICE-R5zBOntDcTqx-10.wav"
+      ]
+    },
+    "Colt1911_Zoom.zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "Colt1911_Zoom/ZM_115B_S06.wav",
+        "Colt1911_Zoom/ZM_095A_S06.wav",
+        "Colt1911_Zoom/ZM_055B_S06.wav"
+      ]
+    },
+    "Glock45_Zoom.zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "Glock45_Zoom/ZM_014A_S01.wav",
+        "Glock45_Zoom/ZM_014A_S02.wav",
+        "Glock45_Zoom/ZM_014A_S03.wav"
+      ]
+    },
+    "Glock9_Zoom.zip": {
+      "total_entries": 495,
+      "wav_files": 244,
+      "examples": [
+        "Glock9_2_Zoom/ZM_109B_S03.wav",
+        "Glock9_2_Zoom/ZM_089A_S03.wav",
+        "Glock9_2_Zoom/ZM_049B_S03.wav"
+      ]
+    },
+    "HKUSP_Zoom.zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "HKUSP_Zoom/ZM_173A_S04.wav",
+        "HKUSP_Zoom/ZM_093B_S03.wav",
+        "HKUSP_Zoom/ZM_053A_S03.wav"
+      ]
+    },
+    "Kimber45_Zoom (1).zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "Kimber45_Zoom/ZM_076B_S02.wav",
+        "Kimber45_Zoom/ZM_156B_S05.wav",
+        "Kimber45_Zoom/ZM_016B_S05.wav"
+      ]
+    },
+    "Kimber45_Zoom.zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "Kimber45_Zoom/ZM_076B_S02.wav",
+        "Kimber45_Zoom/ZM_156B_S05.wav",
+        "Kimber45_Zoom/ZM_016B_S05.wav"
+      ]
+    },
+    "Lorcin380_Zoom (1).zip": {
+      "total_entries": 115,
+      "wav_files": 114,
+      "examples": [
+        "Lorcin380_Zoom/ZM_105A_S05.wav",
+        "Lorcin380_Zoom/ZM_185D_S04.wav",
+        "Lorcin380_Zoom/ZM_045A_S05.wav"
+      ]
+    },
+    "Lorcin380_Zoom.zip": {
+      "total_entries": 115,
+      "wav_files": 114,
+      "examples": [
+        "Lorcin380_Zoom/ZM_105A_S05.wav",
+        "Lorcin380_Zoom/ZM_185D_S04.wav",
+        "Lorcin380_Zoom/ZM_045A_S05.wav"
+      ]
+    },
+    "M16_Zoom (1).zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "M16_Zoom/ZM_077B_S02.wav",
+        "M16_Zoom/ZM_157B_S05.wav",
+        "M16_Zoom/ZM_017B_S05.wav"
+      ]
+    },
+    "M16_Zoom.zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "M16_Zoom/ZM_077B_S02.wav",
+        "M16_Zoom/ZM_157B_S05.wav",
+        "M16_Zoom/ZM_017B_S05.wav"
+      ]
+    },
+    "MP40_Zoom.zip": {
+      "total_entries": 487,
+      "wav_files": 240,
+      "examples": [
+        "MP40_1_Zoom/ZM_211B_S02.wav",
+        "MP40_1_Zoom/ZM_191C_S05.wav",
+        "MP40_1_Zoom/ZM_151A_S01.wav"
+      ]
+    },
+    "Rem700_Zoom.zip": {
+      "total_entries": 61,
+      "wav_files": 60,
+      "examples": [
+        "Rem700_Zoom/ZM_060B_S04.wav",
+        "Rem700_Zoom/ZM_060B_S05.wav",
+        "Rem700_Zoom/ZM_060B_S06.wav"
+      ]
+    },
+    "Ruger22_Zoom.zip": {
+      "total_entries": 115,
+      "wav_files": 114,
+      "examples": [
+        "Ruger22_Zoom/ZM_103B_S01.wav",
+        "Ruger22_Zoom/ZM_083A_S01.wav",
+        "Ruger22_Zoom/ZM_043B_S01.wav"
+      ]
+    },
+    "Ruger357_Zoom.zip": {
+      "total_entries": 115,
+      "wav_files": 114,
+      "examples": [
+        "Ruger357_Zoom/ZM_007A_S01.wav",
+        "Ruger357_Zoom/ZM_007A_S02.wav",
+        "Ruger357_Zoom/ZM_007A_S03.wav"
+      ]
+    },
+    "SIG9_Zoom.zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "SIG9_Zoom/ZM_210B_S02.wav",
+        "SIG9_Zoom/ZM_190C_S05.wav",
+        "SIG9_Zoom/ZM_150A_S01.wav"
+      ]
+    },
+    "SW22_Zoom.zip": {
+      "total_entries": 113,
+      "wav_files": 112,
+      "examples": [
+        "SW22_Zoom/ZM_102B_S01.wav",
+        "SW22_Zoom/ZM_082A_S01.wav",
+        "SW22_Zoom/ZM_042B_S01.wav"
+      ]
+    },
+    "SW38SP_Zoom (1).zip": {
+      "total_entries": 115,
+      "wav_files": 114,
+      "examples": [
+        "SW38SP_Zoom/ZM_146A_S06.wav",
+        "SW38SP_Zoom/ZM_186C_S03.wav",
+        "SW38SP_Zoom/ZM_186B_S06.wav"
+      ]
+    },
+    "SW38SP_Zoom.zip": {
+      "total_entries": 115,
+      "wav_files": 114,
+      "examples": [
+        "SW38SP_Zoom/ZM_146A_S06.wav",
+        "SW38SP_Zoom/ZM_186C_S03.wav",
+        "SW38SP_Zoom/ZM_186B_S06.wav"
+      ]
+    },
+    "SpKing22_Zoom.zip": {
+      "total_entries": 115,
+      "wav_files": 114,
+      "examples": [
+        "SpKing22_Zoom/ZM_121B_S04.wav",
+        "SpKing22_Zoom/ZM_001B_S03.wav",
+        "SpKing22_Zoom/ZM_201A_S01.wav"
+      ]
+    },
+    "WASR_Zoom.zip": {
+      "total_entries": 121,
+      "wav_files": 120,
+      "examples": [
+        "WASR_Zoom/ZM_198D_S01.wav",
+        "WASR_Zoom/ZM_178A_S06.wav",
+        "WASR_Zoom/ZM_098B_S01.wav"
+      ]
+    },
+    "WinM14_Zoom.zip": {
+      "total_entries": 63,
+      "wav_files": 62,
+      "examples": [
+        "WinM14_Zoom/ZM_099B_S01.wav",
+        "WinM14_Zoom/ZM_059A_S01.wav",
+        "WinM14_Zoom/ZM_059A_S03.wav"
+      ]
+    },
+    "edge-collected-gunshot-audio.zip": {
+      "total_entries": 2150,
+      "wav_files": 2148,
+      "examples": [
+        "edge-collected-gunshot-audio/38s&ws_dot38_caliber/03fc4685-909e-42c5-aff0-f519f1d14b12_chan0_v0.wav",
+        "edge-collected-gunshot-audio/38s&ws_dot38_caliber/03fc4685-909e-42c5-aff0-f519f1d14b12_chan1_v0.wav",
+        "edge-collected-gunshot-audio/38s&ws_dot38_caliber/03fc4685-909e-42c5-aff0-f519f1d14b12_chan2_v0.wav"
+      ]
+    }
+  },
+  "usable_training_samples": {
+    "gunshot_audio_recordings_available": 12874,
+    "gunshot_audio_unique_estimated": 12414,
+    "audioset_segments_metadata_available": 360,
+    "speech_samples_in_gunsound_zip": 0,
+    "background_noise_samples_in_gunsound_zip": 0,
+    "other_impulse_samples_in_gunsound_zip": 0
+  }
+}
