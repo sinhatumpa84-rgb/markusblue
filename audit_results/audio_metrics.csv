@@ -1,0 +1,9 @@
+scenario,input_si_sdr_db,output_si_sdr_db,si_sdr_gain_db,input_snr_db,output_snr_db,snr_gain_db,input_stoi,output_stoi,input_rms,output_rms,speech_preservation_loudness,mean_latency_ms
+Clean Speech,120.18,10.84,-109.34,81.18,8.57,-72.62,1.0,0.981,0.1146,0.0814,ATTENUATED,1.033
+Speech + Background Noise (+5 dB),4.97,8.88,3.91,5.01,9.31,4.3,0.935,0.97,0.1274,0.1106,AUDIBLE (Loudness Maintained),0.828
+Speech + Background Noise (-5 dB Low SNR),-5.07,1.94,7.02,-4.98,2.67,7.65,0.744,0.891,0.2336,0.1344,AUDIBLE (Loudness Maintained),0.911
+Speech + Gunshot Impulse (+0 dB),-0.07,9.75,9.81,-0.01,7.16,7.17,0.852,0.975,0.1504,0.1346,AUDIBLE (Loudness Maintained),0.887
+Speech + Gunshot Impulse (-10 dB Heavy),-9.97,6.83,16.79,-10.0,6.52,16.52,0.651,0.955,0.3953,0.1353,AUDIBLE (Loudness Maintained),0.913
+Speech + Other Impulse (Machinery/Impact),-0.06,5.18,5.24,0.0,4.55,4.55,0.852,0.938,0.1717,0.1486,AUDIBLE (Loudness Maintained),0.865
+Very Noisy Mixture (-15 dB Extreme),-15.31,-3.29,12.01,-15.03,0.6,15.63,0.585,0.782,0.6849,0.1196,AUDIBLE (Loudness Maintained),0.825
+Speech Loudness Test (Low Volume Input),10.07,9.38,-0.69,10.05,7.85,-2.21,0.977,0.973,0.0175,0.0199,ATTENUATED,0.808

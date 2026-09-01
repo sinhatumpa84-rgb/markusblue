@@ -1,0 +1,13 @@
+{
+  "target_hardware": "ESP82 / ESP8266 (Tensilica Xtensa L106 @ 160 MHz)",
+  "flash_available_kb": 1024,
+  "flash_used_kb": 2.88,
+  "ram_usable_heap_kb": 40.0,
+  "ram_static_allocated_kb": 5.8,
+  "tensor_arena_bytes": 3584,
+  "model_int8_bytes": 2948,
+  "single_frame_inference_latency_ms": 0.12,
+  "total_frame_dsp_latency_ms": 1.85,
+  "frame_budget_ms": 8.0,
+  "real_time_factor": 0.231
+}
