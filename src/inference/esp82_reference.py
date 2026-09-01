@@ -1,16 +1,28 @@
 import os
+import sys
+from typing import Optional
 import numpy as np
 import soundfile as sf
 import torch
 
-from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
-from src.preprocessing.esp82_features import ESP82FeatureExtractor
-from src.postprocessing.esp82_dsp import (
-    ESP82VoiceActivityDetector,
-    ESP82AutomaticGainControl,
-    ESP82PeakLimiter,
-    ESP82AudioSynthesizer
-)
+try:
+    from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
+    from src.preprocessing.esp82_features import ESP82FeatureExtractor
+    from src.postprocessing.esp82_dsp import (
+        ESP82VoiceActivityDetector,
+        ESP82AutomaticGainControl,
+        ESP82PeakLimiter,
+        ESP82AudioSynthesizer
+    )
+except ImportError:
+    from training.esp82_student_model import MARKUSBLUE_ESP82_Student
+    from preprocessing.esp82_features import ESP82FeatureExtractor
+    from postprocessing.esp82_dsp import (
+        ESP82VoiceActivityDetector,
+        ESP82AutomaticGainControl,
+        ESP82PeakLimiter,
+        ESP82AudioSynthesizer
+    )
 
 class ESP82ReferencePipeline:
     """
@@ -74,7 +86,7 @@ class ESP82ReferencePipeline:
         
         return out_frame
 
-    def process_wav(self, input_wav_path: str, output_wav_path: str = None) -> np.ndarray:
+    def process_wav(self, input_wav_path: str, output_wav_path: Optional[str] = None) -> np.ndarray:
         """
         End-to-end WAV processing using continuous streaming frames.
         """
@@ -91,13 +103,13 @@ class ESP82ReferencePipeline:
         
         # Stream frame by frame
         for i in range(0, n_samples - self.hop_length + 1, self.hop_length):
-            chunk = audio[i:i + self.hop_length]
+            chunk = audio[i:i + hop_length if 'hop_length' in locals() else i + self.hop_length]
             out_chunk = self.process_frame(chunk)
             enhanced_chunks.append(out_chunk)
             
         enhanced_audio = np.concatenate(enhanced_chunks)
         
-        if output_wav_path:
+        if output_wav_path is not None:
             os.makedirs(os.path.dirname(os.path.abspath(output_wav_path)), exist_ok=True)
             sf.write(output_wav_path, enhanced_audio, self.sr)
             print(f"[OK] Saved enhanced audio to '{output_wav_path}'")

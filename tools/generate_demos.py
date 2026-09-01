@@ -17,8 +17,12 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch
 
-from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
-from src.inference.esp82_reference import ESP82ReferencePipeline
+try:
+    from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
+    from src.inference.esp82_reference import ESP82ReferencePipeline
+except ImportError:
+    from ..src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
+    from ..src.inference.esp82_reference import ESP82ReferencePipeline
 
 def compute_snr(clean: np.ndarray, estimated: np.ndarray) -> float:
     min_len = min(len(clean), len(estimated))
@@ -45,6 +49,14 @@ def compute_stoi_approx(clean: np.ndarray, est: np.ndarray) -> float:
     r = float(np.corrcoef(c, e)[0, 1])
     return float(np.clip(0.5 * (r + 1.0), 0.0, 1.0))
 
+class DemoCase:
+    def __init__(self, demo_id: str, name: str, noise_pool: List[str], snr: float, low_vol: bool = False):
+        self.demo_id = demo_id
+        self.name = name
+        self.noise_pool = noise_pool
+        self.snr = snr
+        self.low_vol = low_vol
+
 def generate_audio_demos_and_validation() -> None:
     print("================================================================")
     print("MARKUSBLUE — SIH26052 AUDIO DEMONSTRATION & CORRECTION VALIDATION")
@@ -61,13 +73,13 @@ def generate_audio_demos_and_validation() -> None:
     noise_gun: List[str] = glob.glob("datasets/gunshot/**/*.wav", recursive=True)
     noise_imp: List[str] = glob.glob("datasets/other_impulse/**/*.wav", recursive=True)
     
-    demo_cases: List[Dict[str, Any]] = [
-        {"id": "01", "name": "Gunshot Impulse (0 dB SNR)", "noise_pool": noise_gun, "snr": 0.0, "low_vol": False},
-        {"id": "02", "name": "Tactical Gunshot Heavy (-10 dB SNR)", "noise_pool": noise_gun, "snr": -10.0, "low_vol": False},
-        {"id": "03", "name": "Continuous Background Battle Noise (+5 dB)", "noise_pool": noise_bg, "snr": 5.0, "low_vol": False},
-        {"id": "04", "name": "Extreme Noise Environment (-15 dB SNR)", "noise_pool": noise_bg, "snr": -15.0, "low_vol": False},
-        {"id": "05", "name": "Mechanical Impact Noise (0 dB SNR)", "noise_pool": noise_imp, "snr": 0.0, "low_vol": False},
-        {"id": "06", "name": "Low-Volume Whispered Speech with Noise (Loudness Test)", "noise_pool": noise_bg, "snr": 8.0, "low_vol": True}
+    demo_cases: List[DemoCase] = [
+        DemoCase("01", "Gunshot Impulse (0 dB SNR)", noise_gun, 0.0, False),
+        DemoCase("02", "Tactical Gunshot Heavy (-10 dB SNR)", noise_gun, -10.0, False),
+        DemoCase("03", "Continuous Background Battle Noise (+5 dB)", noise_bg, 5.0, False),
+        DemoCase("04", "Extreme Noise Environment (-15 dB SNR)", noise_bg, -15.0, False),
+        DemoCase("05", "Mechanical Impact Noise (0 dB SNR)", noise_imp, 0.0, False),
+        DemoCase("06", "Low-Volume Whispered Speech with Noise (Loudness Test)", noise_bg, 8.0, True)
     ]
     
     hop_delay = 64
@@ -82,11 +94,10 @@ def generate_audio_demos_and_validation() -> None:
             s_audio = s_audio[::2]
             
         s_audio = s_audio[:8000].astype(np.float32)
-        if bool(demo["low_vol"]):
+        if demo.low_vol:
             s_audio = s_audio * 0.20
             
-        noise_list: List[str] = demo["noise_pool"]
-        n_file = noise_list[idx % len(noise_list)]
+        n_file = demo.noise_pool[idx % len(demo.noise_pool)]
         n_audio, n_sr = sf.read(n_file)
         if len(n_audio.shape) > 1:
             n_audio = np.mean(n_audio, axis=1)
@@ -96,7 +107,7 @@ def generate_audio_demos_and_validation() -> None:
         
         s_pwr = float(np.mean(s_audio ** 2)) + 1e-10
         n_pwr = float(np.mean(n_audio ** 2)) + 1e-10
-        target_snr = float(demo["snr"])
+        target_snr = float(demo.snr)
         scaled_noise = n_audio * np.sqrt(s_pwr / (10.0 ** (target_snr / 10.0) * n_pwr))
         noisy_mix = s_audio + scaled_noise
         
@@ -120,7 +131,7 @@ def generate_audio_demos_and_validation() -> None:
         noisy_aln = noisy_aln[:min_l]
         enh_aln = enh_aln[:min_l]
         
-        cid = str(demo["id"])
+        cid = demo.demo_id
         clean_path = f"audit_results/audio/{cid}_clean.wav"
         noisy_path = f"audit_results/audio/{cid}_noisy.wav"
         out_path = f"audit_results/audio/{cid}_markusblue.wav"
@@ -157,7 +168,7 @@ def generate_audio_demos_and_validation() -> None:
         
         plt.subplot(3, 1, 2)
         plt.specgram(noisy_aln, NFFT=128, Fs=8000, noverlap=64, cmap='magma')
-        plt.title(f'Demo {cid}: Noisy Input ({demo["name"]})')
+        plt.title(f'Demo {cid}: Noisy Input ({demo.name})')
         plt.ylabel('Hz')
         
         plt.subplot(3, 1, 3)
@@ -171,7 +182,7 @@ def generate_audio_demos_and_validation() -> None:
         
         eval_records.append({
             "id": cid,
-            "scenario": str(demo["name"]),
+            "scenario": demo.name,
             "in_sisdr": round(in_sisdr, 2),
             "out_sisdr": round(out_sisdr, 2),
             "sisdr_gain": round(out_sisdr - in_sisdr, 2),
@@ -182,7 +193,7 @@ def generate_audio_demos_and_validation() -> None:
             "audio_blanking": "PASS (No Dropouts)" if not blanking_detected else "FAIL (Dropout detected)",
             "speech_loudness": "PASS (Audible)" if out_rms >= 0.10 else "FAIL (Too Quiet)"
         })
-        print(f"[*] Demo {cid}: {demo['name']} | Gain: +{out_sisdr - in_sisdr:.2f} dB SI-SDR")
+        print(f"[*] Demo {cid}: {demo.name} | Gain: +{out_sisdr - in_sisdr:.2f} dB SI-SDR")
         
     before_after_md = """# MARKUSBLUE Before vs. After Correction Technical Validation
 

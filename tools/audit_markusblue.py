@@ -18,8 +18,12 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch
 
-from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
-from src.inference.esp82_reference import ESP82ReferencePipeline
+try:
+    from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
+    from src.inference.esp82_reference import ESP82ReferencePipeline
+except ImportError:
+    from ..src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
+    from ..src.inference.esp82_reference import ESP82ReferencePipeline
 
 def compute_snr(clean: np.ndarray, estimated: np.ndarray) -> float:
     min_len = min(len(clean), len(estimated))
@@ -45,6 +49,13 @@ def compute_stoi_approx(clean: np.ndarray, est: np.ndarray) -> float:
     e = est[:min_len]
     r = float(np.corrcoef(c, e)[0, 1])
     return float(np.clip(0.5 * (r + 1.0), 0.0, 1.0))
+
+class TacticalScenario:
+    def __init__(self, name: str, noise_cat: Optional[str], snr: float, low_vol: bool = False):
+        self.name = name
+        self.noise_cat = noise_cat
+        self.snr = snr
+        self.low_vol = low_vol
 
 def run_full_audit() -> None:
     print("================================================================")
@@ -98,7 +109,7 @@ def run_full_audit() -> None:
     corrupted_count = 0
     silent_count = 0
     clipping_count = 0
-    durations = []
+    durations: List[float] = []
     sample_rates: Dict[str, int] = {}
     
     audit_sample_files: List[str] = []
@@ -108,7 +119,7 @@ def run_full_audit() -> None:
     for f_path in audit_sample_files:
         try:
             info = sf.info(f_path)
-            durations.append(info.duration)
+            durations.append(float(info.duration))
             sample_rates[str(info.samplerate)] = sample_rates.get(str(info.samplerate), 0) + 1
             audio, _ = sf.read(f_path)
             if float(np.max(np.abs(audio))) < 1e-5:
@@ -150,15 +161,15 @@ def run_full_audit() -> None:
     print("[4/6] Running A/B benchmark evaluation...")
     pipeline = ESP82ReferencePipeline(model_path="models/markusblue_esp82_student_best.pt", sr=8000)
     
-    test_scenarios = [
-        {"name": "Clean Speech", "noise_cat": None, "snr": 30.0, "low_vol": False},
-        {"name": "Speech + Background Noise (+5 dB)", "noise_cat": "background_noise", "snr": 5.0, "low_vol": False},
-        {"name": "Speech + Background Noise (-5 dB Low SNR)", "noise_cat": "background_noise", "snr": -5.0, "low_vol": False},
-        {"name": "Speech + Gunshot Impulse (+0 dB)", "noise_cat": "gunshot_impulses", "snr": 0.0, "low_vol": False},
-        {"name": "Speech + Gunshot Impulse (-10 dB Heavy)", "noise_cat": "gunshot_impulses", "snr": -10.0, "low_vol": False},
-        {"name": "Speech + Other Impulse (Machinery/Impact)", "noise_cat": "other_impulses", "snr": 0.0, "low_vol": False},
-        {"name": "Very Noisy Mixture (-15 dB Extreme)", "noise_cat": "background_noise", "snr": -15.0, "low_vol": False},
-        {"name": "Speech Loudness Test (Low Volume Input)", "noise_cat": "background_noise", "snr": 10.0, "low_vol": True}
+    scenarios: List[TacticalScenario] = [
+        TacticalScenario("Clean Speech", None, 30.0, False),
+        TacticalScenario("Speech + Background Noise (+5 dB)", "background_noise", 5.0, False),
+        TacticalScenario("Speech + Background Noise (-5 dB Low SNR)", "background_noise", -5.0, False),
+        TacticalScenario("Speech + Gunshot Impulse (+0 dB)", "gunshot_impulses", 0.0, False),
+        TacticalScenario("Speech + Gunshot Impulse (-10 dB Heavy)", "gunshot_impulses", -10.0, False),
+        TacticalScenario("Speech + Other Impulse (Machinery/Impact)", "other_impulses", 0.0, False),
+        TacticalScenario("Very Noisy Mixture (-15 dB Extreme)", "background_noise", -15.0, False),
+        TacticalScenario("Speech Loudness Test (Low Volume Input)", "background_noise", 10.0, True)
     ]
     
     speech_pool = dataset_categories["clean_speech"]
@@ -166,7 +177,7 @@ def run_full_audit() -> None:
     json_results: List[Dict[str, Any]] = []
     hop_delay = 64
     
-    for idx, sc in enumerate(test_scenarios):
+    for idx, sc in enumerate(scenarios):
         s_file = speech_pool[idx % len(speech_pool)]
         s_audio, sr = sf.read(s_file)
         if len(s_audio.shape) > 1:
@@ -175,12 +186,11 @@ def run_full_audit() -> None:
             s_audio = s_audio[::2]
             
         s_audio = s_audio[:8000].astype(np.float32)
-        if bool(sc["low_vol"]):
+        if sc.low_vol:
             s_audio = s_audio * 0.15
             
-        noise_cat = sc["noise_cat"]
-        if noise_cat is not None and str(noise_cat) in dataset_categories:
-            n_cat_pool = dataset_categories[str(noise_cat)]
+        if sc.noise_cat is not None and sc.noise_cat in dataset_categories:
+            n_cat_pool = dataset_categories[sc.noise_cat]
             n_file = n_cat_pool[idx % len(n_cat_pool)]
             n_audio, n_sr = sf.read(n_file)
             if len(n_audio.shape) > 1:
@@ -191,14 +201,14 @@ def run_full_audit() -> None:
             
             s_pwr = float(np.mean(s_audio ** 2)) + 1e-10
             n_pwr = float(np.mean(n_audio ** 2)) + 1e-10
-            target_snr = float(sc["snr"])
+            target_snr = float(sc.snr)
             scaled_noise = n_audio * np.sqrt(s_pwr / (10.0 ** (target_snr / 10.0) * n_pwr))
             noisy_mix = s_audio + scaled_noise
         else:
             noisy_mix = np.copy(s_audio)
             
         enhanced_chunks = []
-        latencies = []
+        latencies: List[float] = []
         hop = pipeline.hop_length
         for i in range(0, len(noisy_mix) - hop + 1, hop):
             chunk = noisy_mix[i:i + hop]
@@ -230,7 +240,7 @@ def run_full_audit() -> None:
         out_rms = float(np.sqrt(np.mean(enh_aln ** 2)))
         
         row = {
-            "scenario": str(sc["name"]),
+            "scenario": sc.name,
             "input_si_sdr_db": round(in_sisdr, 2),
             "output_si_sdr_db": round(out_sisdr, 2),
             "si_sdr_gain_db": round(out_sisdr - in_sisdr, 2),
