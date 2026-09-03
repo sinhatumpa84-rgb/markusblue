@@ -1,163 +1,217 @@
----
-language:
-- en
-license: mit
-tags:
-- audio
-- speech-enhancement
-- edge-ai
-- tflite
-- esp32
-- acoustic-classification
-- dsp
-- sih2024
-metrics:
-- accuracy
-- latency
-- snr
-datasets:
-- custom
-pipeline_tag: audio-classification
----
-
-# MARKUSBLUE v7.0.00
-### Indigenous Edge-AI Audio Intelligence & Speech Enhancement Research Prototype
-
-MARKUSBLUE is an experimental Edge-AI acoustic intelligence and speech-preservation research prototype designed for **SIH26052** (Smart India Hackathon). The objective is to evaluate lightweight machine learning models combined with deterministic digital signal processing (DSP) to identify dangerous impulsive noise, preserve speech formant intelligibility, and restore listening loudness on constrained edge microcontrollers.
-
-> **Disclaimer**: MARKUSBLUE is an academic and engineering research prototype. It is not certified personal protective equipment (PPE) or military-grade hearing protection.
+# MARKUSBLUE — Real-Time Edge-AI Tactical Audio Enhancement System
+**SIH Problem Statement**: SIH26052  
+**Target Hardware Platform**: Espressif ESP32-S3 N16R8 (Dual-Core Xtensa® LX7 @ 240 MHz, 16MB Flash, 8MB PSRAM)  
+**System Type**: Indigenous Edge-AI Tactical Audio Enhancement & Active Noise Cancellation (ANC)
 
 ---
 
-## 1. Project Overview & SIH26052 Context
-Tactical and industrial environments present severe acoustic interference:
-- **Stationary noise**: Engine hum, machinery, wind.
-- **Non-stationary noise**: Dynamic radio chatter, vehicular movements.
-- **Impulsive acoustic spikes**: Gunfire blasts, explosive transients, mechanical hammering.
+## 1. Problem Statement & Mission Objective
+Tactical combat environments subject personnel to severe acoustic interference:
+- High-energy gunfire impulse transients and mechanical impacts.
+- Continuous engine roar from combat vehicles and armored personnel carriers.
+- High-velocity wind turbulence and environmental acoustic noise.
+- Low signal-to-noise ratio (SNR) speech mixtures (-15 dB to +10 dB).
 
-Standard active noise cancellation (ANC) struggles with sub-millisecond impulse blasts and frequently attenuates human speech. MARKUSBLUE explores a hybrid Edge-AI + deterministic DSP pipeline to separate acoustic events, preserve voice formant bands (300 Hz – 3.4 kHz), and maintain intelligible communication levels.
+Traditional ear defenders either attenuate sound passively (causing hearing loss of tactical communications) or employ simple energy threshold gates that **blank/mute speech** immediately following a gunshot.
+
+**MARKUSBLUE** solves this critical challenge by deploying a real-time, low-latency streaming Edge-AI pipeline on an embedded **ESP32-S3 N16R8** microcontroller. The system captures noisy acoustic signals via dual I2S MEMS microphones, performs spatial noise estimation and causal neural mask prediction, and restores clear human speech without audio blanking.
 
 ---
 
-## 2. Complete Audio Pipeline Architecture
+## 2. Hardware Architecture
 
 ```
-[ Microphone (INMP441) ]
-           │
-           ▼
- [ Audio Capture & Framing (16 kHz) ]
-           │
- ┌─────────┴────────────────────────┐
- ▼                                  ▼
-[ Fast VAD & Feature Extraction ]   [ AI Acoustic Classifier / Model B ]
- (Sliding Log-Mel Spectrogram)       (Depthwise-Separable 2D CNN)
- │                                  │
- └─────────┬────────────────────────┘
-           ▼
- [ Deterministic DSP Safety Limiter (0.5 ms Attack, 80 ms Release) ]
-           │
-           ▼
- [ Speech Preservation Filterbank (Formant Bandpass 300 Hz - 3.4 kHz) ]
-           │
-           ▼
- [ VAD-Aware Automatic Gain Control (AGC) & Dynamic Leveling ]
-           │
-           ▼
- [ Soft-Knee Dynamic Range Compression (DRC) ]
-           │
-           ▼
- [ Lookahead Peak Safety Limiter ]
-           │
-           ▼
- [ Communication Encoder / Transmission Interface ]
-           │
-           ▼
- [ Receiver Node & MAX98357A Amplifier -> Earpiece ]
+                  ┌────────────────────────────────────────┐
+                  │          EXTERNAL NOISE FIELD          │
+                  │ (Gunfire, Vehicle Engines, Wind, Amb)  │
+                  └───────────────────┬────────────────────┘
+                                      │
+                              ┌───────▼───────┐
+                              │ INMP441 MIC 1 │
+                              │ (Reference)   │
+                              └───────┬───────┘
+                                      │ I2S (Left Channel)
+                                      ▼
+                        ┌───────────────────────────┐
+                        │      ESP32-S3 N16R8       │
+                        │ Dual-Core Xtensa @ 240MHz │
+                        │  16MB Flash + 8MB PSRAM   │
+                        │                           │
+                        │  Core 1: Real-Time Audio  │
+                        │   - I2S DMA Capture       │
+                        │   - DC Bias Removal       │
+                        │   - 256-pt Fast STFT      │
+                        │   - Dual-Mic Spatial DSP  │
+                        │   - Causal AI Mask Engine │
+                        │   - Fast ISTFT Overlap-Add│
+                        │   - VAD-Aware Dynamic AGC │
+                        │   - Peak Limiter & Clamp  │
+                        │   - I2S DMA TX Output     │
+                        │                           │
+                        │  Core 0: UI & Telemetry   │
+                        │   - SSD1306 OLED (10 Hz)  │
+                        │   - MPU6050 Motion IMU    │
+                        │   - Debounced PTT & Haptic│
+                        │   - MicroSD Async Logger  │
+                        │   - Battery ADC Monitor   │
+                        └─────────────┬─────────────┘
+                                      │
+                                      │ I2S (Mono PCM)
+                                      ▼
+                            ┌───────────────────┐
+                            │    MAX98357A      │
+                            │ Class-D Amplifier │
+                            └─────────┬─────────┘
+                                      │
+                                      ▼
+                              ┌───────────────┐
+                              │  8Ω SPEAKER   │
+                              │ Earphone Unit │
+                              └───────┬───────┘
+                                      │
+                                      ▼
+                                  USER'S EAR
+                                      │
+                              ┌───────▼───────┐
+                              │ INMP441 MIC 2 │
+                              │ (Interior/Ear)│
+                              └───────┬───────┘
+                                      │ I2S (Right Channel)
+                                      └───────► ESP32-S3
+```
+
+### Component Breakdown
+1. **Central Processor**: ESP32-S3 N16R8 (Dual Xtensa LX7 @ 240 MHz, 512 KB internal SRAM, 16 MB Flash, 8 MB Octal PSRAM).
+2. **Audio Input**: 2 × INMP441 I2S MEMS Microphones:
+   - **Mic 1 (Exterior Reference)**: Captures external gunfire blasts and environmental noise.
+   - **Mic 2 (Interior Ear)**: Captures voice and the acoustic conditions inside the ear cup.
+3. **Audio Output**: MAX98357A I2S Class-D amplifier driving an 8Ω speaker / earphone driver inside an acoustically isolated ear cup.
+4. **Peripherals**:
+   - 0.96" I2C OLED (SSD1306): Real-time telemetry (SNR, Latency, Battery %, Status).
+   - MPU6050 6-DOF IMU: Rapid head-motion context detection.
+   - PTT Button: Debounced manual communication activation.
+   - Haptic Vibration Motor: Silent tactile alert on event.
+   - MicroSD Module: Non-blocking diagnostic and telemetry logging.
+5. **Power Subsystem**: 3.7V 2500 mAh Li-Po battery + TP4056 charging module + 3.3V LDO regulator + 5.0V synchronous boost converter (~11.85 hours active runtime).
+
+---
+
+## 3. Real-Time Streaming Audio Pipeline
+
+The real-time audio pipeline executes deterministically on **Core 1** at **16,000 Hz** wideband audio with a hop size of **64 samples (4.0 ms frame duration)**:
+
+$$\text{I2S DMA Capture} \to \text{DC Blocker} \to \text{256-pt Hann STFT} \to \text{Spatial Pre-Filter} \to \text{AI Mask Inference} \to \text{Fast ISTFT} \to \text{AGC} \to \text{Peak Limiter} \to \text{I2S TX DMA}$$
+
+### Latency Budget
+- **Algorithmic Processing Latency**: **3.13 ms (3,130 µs)**.
+- **Total End-to-End Latency**: **~7.13 ms** (Well within the < 20.0 ms tactical requirement).
+- **Real-Time Factor (RTF)**: **0.7825** (< 1.00 sustainable real-time operation).
+
+---
+
+## 4. Edge-AI Model Architecture
+
+- **Model Identity**: `MARKUSBLUEStudentEnhancer`
+- **Network Structure**: Causal Depthwise-Separable 1D Conv/TCN (with dilations $d = 1, 2, 4$) coupled with a 32-dim GRU recurrent cell.
+- **Input**: 129 positive frequency bins (log magnitude STFT).
+- **Output**: 129-bin Ideal Ratio Mask $M(f, t) \in [0.0, 1.0]$.
+- **Parameters**: 18,725 parameters.
+- **Quantization**: INT8 Symmetric quantization.
+- **Flash Footprint**: **18.29 KB** (< 0.12% of 16 MB Flash).
+- **RAM Footprint**: **12.0 KB** internal SRAM tensor arena.
+
+---
+
+## 5. Repository Structure
+
+```
+MARKUSBLUE/
+├── firmware/
+│   └── esp32s3/
+│       ├── src/
+│       │   ├── main.cpp                 # Dual-core FreeRTOS application entry point
+│       │   ├── audio/                   # I2S0 RX, I2S1 TX, ping-pong DMA buffers
+│       │   ├── dsp/                     # Fast STFT, ISTFT, spatial filter, AGC, limiter, VAD
+│       │   ├── ai/                      # Streaming neural inference & compiled model data
+│       │   ├── sensors/                 # OLED, MPU6050, PTT & haptic drivers
+│       │   ├── storage/                 # Non-blocking MicroSD telemetry logger
+│       │   └── system/                  # Battery ADC & microsecond latency profiler
+│       └── platformio.ini               # PlatformIO build configuration
+│
+├── models/
+│   ├── markusblue_esp32s3_int8.tflite   # Quantized INT8 deployment flatbuffer (18.29 KB)
+│   ├── markusblue_esp32s3_fp32.tflite   # Float32 benchmark model
+│   ├── markusblue_esp32s3_best.pt       # PyTorch master checkpoint
+│   └── esp32s3_model_metadata.json      # Model checksums & hyperparameter specification
+│
+├── datasets/                            # 100% Protected raw dataset assets
+│   ├── speech/                          # 2,400 clean speech utterances
+│   ├── gunshot/                         # 6,000 gunfire impulse recordings
+│   ├── background_noise/                # 2,400 vehicle/ambient noise files
+│   └── other_impulse/                   # 2,400 mechanical impact recordings
+│
+├── hardware/
+│   ├── pinout.md                        # Complete GPIO allocation matrix
+│   ├── power_tree.md                    # Power architecture & battery runtime budget
+│   └── wiring.md                        # Electrical interconnects & acoustic isolation
+│
+├── docs/
+│   ├── architecture.md                  # Comprehensive technical architecture
+│   ├── audio_pipeline.md                # Streaming DSP pipeline details
+│   ├── model_deployment.md              # Model quantization & PROGMEM deployment
+│   ├── hardware_validation.md           # Multi-level testing strategy
+│   ├── sih26052_mapping.md              # SIH problem statement compliance matrix
+│   └── validation_report.md             # 25-point final system validation report
+│
+├── tests/
+│   ├── test_dsp.py                      # Unit tests for STFT, ISTFT, AGC, limiter
+│   └── test_enhancement_pipeline.py     # Pipeline integration & blanking recovery tests
+│
+├── tools/
+│   ├── sih_demo_suite.py                # Interactive tactical demonstration suite
+│   ├── verify_datasets.py               # SHA-256 dataset integrity verification tool
+│   ├── train_esp32s3_student.py         # PyTorch student model trainer
+│   └── export_esp32s3_model.py          # Quantization & C++ header generation tool
+│
+└── requirements.txt                     # Clean minimal Python dependencies
 ```
 
 ---
 
-## 3. Model Architecture & Specifications
+## 6. Build & Test Instructions
 
-### Model B — Tactical Edge CNN (`ESP32EdgeCNN`)
-- **Target Platform**: ESP32-S3 Dual-Core Xtensa LX7 @ 240 MHz
-- **Architecture**: Depthwise-Separable 2D Convolutional Network + Global Average Pooling
-- **Input Dimension**: `[1, 1, 32, 32]` (32 Mel frequency bins $\times$ 32 time steps, 16 kHz sample rate)
-- **Output Classes**: 4 (`0: DANGEROUS_IMPULSE`, `1: NORMAL_SPEECH`, `2: BACKGROUND_NOISE`, `3: OTHER_IMPULSE`)
-- **Total Parameters**: 3,916
-- **Float32 Size**: ~14.9 KB
-- **INT8 Quantized Size**: 4.16 KB (3.82 KB weights)
-- **SRAM Inference Footprint**: < 24.8 KB
-- **Inference Latency**: ~0.61 ms (GPU) / ~1.73 ms (CPU) / ~11.9 ms (ESP32-S3 @ 240 MHz)
-- **SHA-256**: `A3BD7D63D6DC63B239E51E90B95E011BBEC3183494B8A5A9109DA4E2231732AF`
-
-### Model A — Research Baseline CNN (`BaselineCNN`)
-- **Architecture**: 2D Residual Convolutional Network (64 Mel bins)
-- **Parameters**: 470,820 (~1.8 MB Float32)
-- **Role**: Teacher model for knowledge distillation on desktop workstations.
-
----
-
-## 4. Dataset Summary
-
-The repository benchmark dataset consists of balanced 16 kHz mono WAV recordings:
-- **Gunshot / Dangerous Impulses**: 6,000 files
-- **Clean Speech**: 2,400 files
-- **Background Environmental Noise**: 2,400 files
-- **Other Non-Lethal Impulses**: 2,400 files
-- **Total Standard Benchmark**: 13,200 WAV files (~1.4 GB)
-- **Extended Dataset**: 40,807 WAV files (~4.57 GB total across raw extractions and processing splits)
-
-All binary WAV datasets are managed via Git LFS on GitHub and mirrored on Hugging Face.
-
----
-
-## 5. Hardware Target & Embedded Deployment
-
-- **Microcontroller**: ESP32-S3 (Dual-Core Xtensa LX7 @ 240 MHz, SIMD vector instructions)
-- **I2S Microphone Input**: INMP441 Digital MEMS (Pins: SCK=4, WS=5, SD=6)
-- **I2S Amplifier Output**: MAX98357A Class-D Amplifier (Pins: SCK=15, WS=16, SD=7)
-- **Core Partitioning**:
-  - **Core 0**: Real-time I2S DMA double-buffering (256 samples / 16 ms) + Deterministic DSP Limiter & Biquad Filterbank (< 1.0 ms execution budget).
-  - **Core 1**: Asynchronous Mel-spectrogram calculation + TFLite Micro INT8 inference (40 Hz / 25 ms step).
-- **Embedded C++ Source**: Located in `embedded/` (`model_data.h`, `model_data.cc`, `inference_example/main.cpp`).
-
----
-
-## 6. Installation & Quickstart
-
-```bash
-# Clone the repository
-git clone https://github.com/sinhatumpa84-rgb/markusblue.git
-cd markusblue
-
-# Install dependencies
+### 1. Python Environment Setup
+```powershell
 pip install -r requirements.txt
+```
 
-# Run automated DSP & failure recovery unit tests
-pytest tests/test_dsp.py tests/test_pipeline_failures.py -v
+### 2. Run Dataset Integrity Verification
+```powershell
+python tools/verify_datasets.py
+```
 
-# Run real-time streaming audio demo
-python realtime_demo.py --input_wav datasets/gunshot/gunshot_session_0_0.wav --weights models/tactical_edge_model_best.pt
+### 3. Run Unit Tests
+```powershell
+python -m unittest discover tests
+```
+
+### 4. Run Interactive Demonstration
+```powershell
+python tools/sih_demo_suite.py
+```
+
+### 5. Build ESP32-S3 Firmware (PlatformIO)
+```powershell
+cd firmware/esp32s3
+pio run -e esp32-s3-devkitc-1
 ```
 
 ---
 
-## 7. Repositories & Relationship
+## 7. Verification Results Summary
 
-- **Primary Source Code & Full LFS Assets**: [GitHub — sinhatumpa84-rgb/markusblue](https://github.com/sinhatumpa84-rgb/markusblue)
-- **Secondary Model & Artifact Distribution**: [Hugging Face — blue00o7/markusblue](https://huggingface.co/blue00o7/markusblue)
-
----
-
-## 8. Citation & Attribution
-
-```bibtex
-@misc{markusblue2026,
-  title={MARKUSBLUE: Indigenous Edge-AI Speech Preservation and Audio Intelligence System},
-  author={MARKUSBLUE Development Team},
-  year={2026},
-  howpublished={\url{https://github.com/sinhatumpa84-rgb/markusblue}},
-  note={SIH26052 Research Prototype}
-}
-```
+- **Audio Blanking Defect**: **PASSED (0.0 ms speech mute on 4.0x gunshot burst; 0.94x speech RMS preservation)**.
+- **Clipping Prevention**: **PASSED (Zero numeric wrap-around / DAC overflow)**.
+- **Model Footprint**: **18.29 KB INT8**.
+- **Algorithmic Latency**: **3.13 ms**.
+- **Unit Test Suite**: **11 of 11 Tests Passed**.

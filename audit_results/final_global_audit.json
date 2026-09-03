@@ -1,0 +1,16 @@
+{
+  "verdict": "PASSED",
+  "dataset_invariant_passed": true,
+  "demucs_hits_count": 0,
+  "demucs_hits": [],
+  "lora_production_hits_count": 0,
+  "lora_hits": [],
+  "esp82_production_hits_count": 0,
+  "esp82_hits": [],
+  "imports_passed": true,
+  "current_counts": {
+    "datasets": 13201,
+    "data": 27626,
+    "gunsound": 26
+  }
+}
