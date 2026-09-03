@@ -1,0 +1,364 @@
+{
+  "datasets_primary": {
+    "exists": true,
+    "total_files": 13201,
+    "total_bytes": 423003997,
+    "total_mb": 403.41,
+    "categories": {
+      ".": {
+        "file_count": 1,
+        "total_bytes": 23197,
+        "first_file": "gunshot_segments.csv",
+        "last_file": "gunshot_segments.csv"
+      },
+      "background_noise": {
+        "file_count": 2400,
+        "total_bytes": 76905600,
+        "first_file": "bg_bg_session_00_0000.wav",
+        "last_file": "bg_noise_1199.wav"
+      },
+      "gunshot": {
+        "file_count": 6000,
+        "total_bytes": 192264000,
+        "first_file": "gun_BoltAction22_Zoom_ZM_004A_S01_w0.wav",
+        "last_file": "gun_C3GD-Dataset_3-ny_gravel_pit-ruger_lcp_380ACP-JON-Wjpg9aiaTIsb-2_w0.wav"
+      },
+      "other_impulse": {
+        "file_count": 2400,
+        "total_bytes": 76905600,
+        "first_file": "other_impulse_0000.wav",
+        "last_file": "other_imp_other_imp_session_29_1199.wav"
+      },
+      "speech": {
+        "file_count": 2400,
+        "total_bytes": 76905600,
+        "first_file": "speech_ref_0000.wav",
+        "last_file": "speech_speaker_session_29_1199.wav"
+      }
+    },
+    "sample_hashes": {
+      "datasets\\gunshot_segments.csv": "88c796929582f14669b4a1e4f6e630a633e28adbde6e95351ee018f096bb9303",
+      "datasets\\background_noise\\bg_bg_session_00_0000.wav": "8e6182131cb2e40543559860e102e4b334e9eef89379a45ff23d4b34ef6f038c",
+      "datasets\\background_noise\\bg_noise_1199.wav": "53e6c38fb27fc22e1f2aa9b4c7d929cd73136f2802ce92009740be95e5711d7d",
+      "datasets\\gunshot\\gun_BoltAction22_Zoom_ZM_004A_S01_w0.wav": "12d48e2ed23043ca7044acd4fd15837b172cf58f785258abf66d5c341f79da40",
+      "datasets\\gunshot\\gun_C3GD-Dataset_3-ny_gravel_pit-ruger_lcp_380ACP-JON-Wjpg9aiaTIsb-2_w0.wav": "e616ce477e37e36e88423559db25e63e8edd637aa7a638f432e2ba6d98eb0872",
+      "datasets\\other_impulse\\other_impulse_0000.wav": "00264a846fe7018563a0f08c1cebc6fa694858d7bc69b89fc498962dcc971299",
+      "datasets\\other_impulse\\other_imp_other_imp_session_29_1199.wav": "5c9dec612139d8d2368d6070402b32bc588946228eda4c34b45b9cb7ecc3ea17",
+      "datasets\\speech\\speech_ref_0000.wav": "a6eaf4b53f10ad9f3c70fb34ef367af0943eff4aeef3a57cac359925efd1e873",
+      "datasets\\speech\\speech_speaker_session_29_1199.wav": "e82f5bbc6e1c81d5e47f53079a8186874f59c345ca71d66487206f282338a970"
+    }
+  },
+  "data_extended": {
+    "exists": true,
+    "total_files": 27620,
+    "total_bytes": 4492582792,
+    "total_mb": 4284.46,
+    "categories": {
+      "extracted\\BoltAction22_Zoom\\BoltAction22_Zoom": {
+        "file_count": 113,
+        "total_bytes": 86083356,
+        "first_file": "ZM_004A_S01.wav",
+        "last_file": "ZM_204B_S06.wav"
+      },
+      "extracted\\C3GD-Dataset\\C3GD-Dataset": {
+        "file_count": 1,
+        "total_bytes": 1147342,
+        "first_file": "metadata.csv",
+        "last_file": "metadata.csv"
+      },
+      "extracted\\C3GD-Dataset\\C3GD-Dataset\\data": {
+        "file_count": 8015,
+        "total_bytes": 558746230,
+        "first_file": "0-oh_farm-czusa_457-ALICE-R5zBOntDcTqx-0.wav",
+        "last_file": "9-oh_farm-winchester_1400-PIXEL-B93my2mvF9Dw-9.wav"
+      },
+      "extracted\\C3GD-Dataset\\C3GD-Dataset\\metadata": {
+        "file_count": 6,
+        "total_bytes": 6198,
+        "first_file": "calibers.csv",
+        "last_file": "platforms.csv"
+      },
+      "extracted\\C3GD-Dataset\\C3GD-Dataset\\scripts\\res": {
+        "file_count": 2,
+        "total_bytes": 17325726,
+        "first_file": "380ACP-7-7WYYO4zK0hPS-9.wav",
+        "last_file": "LILYPAD_h0a15a3bcfjs_9mm124tmcgr_15_DOM2-USB.wav"
+      },
+      "extracted\\Colt1911_Zoom\\Colt1911_Zoom": {
+        "file_count": 120,
+        "total_bytes": 92863368,
+        "first_file": "ZM_015A_S01.wav",
+        "last_file": "ZM_215B_S06.wav"
+      },
+      "extracted\\edge-collected-gunshot-audio": {
+        "file_count": 2,
+        "total_bytes": 782589,
+        "first_file": "gunshot-audio-all-metadata.csv",
+        "last_file": "gunshot-audio-labels-only.csv"
+      },
+      "extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\38s&ws_dot38_caliber": {
+        "file_count": 503,
+        "total_bytes": 369960542,
+        "first_file": "03fc4685-909e-42c5-aff0-f519f1d14b12_chan0_v0.wav",
+        "last_file": "ff1d9c73-6178-4b6b-a986-0713b17b84ce_v1.wav"
+      },
+      "extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\glock_17_9mm_caliber": {
+        "file_count": 669,
+        "total_bytes": 492981734,
+        "first_file": "019439aa-e146-49da-b59c-28a594fba7e2_v0.wav",
+        "last_file": "ff859858-8234-4314-902b-2b9db5efd098_v0.wav"
+      },
+      "extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\remington_870_12_gauge": {
+        "file_count": 379,
+        "total_bytes": 305815286,
+        "first_file": "063b74d6-eb05-437e-b767-14a3248cd10c_chan0_v1.wav",
+        "last_file": "ff9e990f-689b-4608-8fc2-790b6a6231e8_v0.wav"
+      },
+      "extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\ruger_ar_556_dot223_caliber": {
+        "file_count": 597,
+        "total_bytes": 522160582,
+        "first_file": "04187ca0-da31-406a-960b-cb24a97e27a2_v0.wav",
+        "last_file": "ff842455-42f4-4c3a-8ab0-0ee2085d1c32_mean_v0.wav"
+      },
+      "extracted\\Glock45_Zoom\\Glock45_Zoom": {
+        "file_count": 120,
+        "total_bytes": 92673988,
+        "first_file": "ZM_014A_S01.wav",
+        "last_file": "ZM_214B_S06.wav"
+      },
+      "extracted\\Glock9_Zoom\\Glock9_1_Zoom": {
+        "file_count": 124,
+        "total_bytes": 96106956,
+        "first_file": "ZM_008A_S01.wav",
+        "last_file": "ZM_208B_S06.wav"
+      },
+      "extracted\\Glock9_Zoom\\Glock9_2_Zoom": {
+        "file_count": 120,
+        "total_bytes": 93319664,
+        "first_file": "ZM_009A_S01.wav",
+        "last_file": "ZM_209B_S06.wav"
+      },
+      "extracted\\HKUSP_Zoom\\HKUSP_Zoom": {
+        "file_count": 120,
+        "total_bytes": 92928944,
+        "first_file": "ZM_013A_S01.wav",
+        "last_file": "ZM_213B_S06.wav"
+      },
+      "extracted\\Kimber45_Zoom\\Kimber45_Zoom": {
+        "file_count": 120,
+        "total_bytes": 92988020,
+        "first_file": "ZM_016A_S01.wav",
+        "last_file": "ZM_216B_S06.wav"
+      },
+      "extracted\\Lorcin380_Zoom\\Lorcin380_Zoom": {
+        "file_count": 114,
+        "total_bytes": 87815240,
+        "first_file": "ZM_005A_S01.wav",
+        "last_file": "ZM_205B_S06.wav"
+      },
+      "extracted\\M16_Zoom\\M16_Zoom": {
+        "file_count": 120,
+        "total_bytes": 92783008,
+        "first_file": "ZM_017A_S01.wav",
+        "last_file": "ZM_217B_S06.wav"
+      },
+      "extracted\\MP40_Zoom\\MP40_1_Zoom": {
+        "file_count": 120,
+        "total_bytes": 93035716,
+        "first_file": "ZM_011A_S01.wav",
+        "last_file": "ZM_211B_S06.wav"
+      },
+      "extracted\\MP40_Zoom\\MP40_2_Zoom": {
+        "file_count": 120,
+        "total_bytes": 93454560,
+        "first_file": "ZM_012A_S01.wav",
+        "last_file": "ZM_212B_S06.wav"
+      },
+      "extracted\\Rem700_Zoom\\Rem700_Zoom": {
+        "file_count": 60,
+        "total_bytes": 47367532,
+        "first_file": "ZM_020A_S01.wav",
+        "last_file": "ZM_220B_S06.wav"
+      },
+      "extracted\\Ruger22_Zoom\\Ruger22_Zoom": {
+        "file_count": 114,
+        "total_bytes": 87955952,
+        "first_file": "ZM_003A_S01.wav",
+        "last_file": "ZM_203B_S06.wav"
+      },
+      "extracted\\Ruger357_Zoom\\Ruger357_Zoom": {
+        "file_count": 114,
+        "total_bytes": 88300140,
+        "first_file": "ZM_007A_S01.wav",
+        "last_file": "ZM_207B_S06.wav"
+      },
+      "extracted\\SIG9_Zoom\\SIG9_Zoom": {
+        "file_count": 120,
+        "total_bytes": 93391448,
+        "first_file": "ZM_010A_S01.wav",
+        "last_file": "ZM_210B_S06.wav"
+      },
+      "extracted\\SpKing22_Zoom\\SpKing22_Zoom": {
+        "file_count": 114,
+        "total_bytes": 87649516,
+        "first_file": "ZM_001A_S01.wav",
+        "last_file": "ZM_201B_S06.wav"
+      },
+      "extracted\\SW22_Zoom\\SW22_Zoom": {
+        "file_count": 112,
+        "total_bytes": 86387732,
+        "first_file": "ZM_002A_S01.wav",
+        "last_file": "ZM_202B_S06.wav"
+      },
+      "extracted\\SW38SP_Zoom\\SW38SP_Zoom": {
+        "file_count": 114,
+        "total_bytes": 87664056,
+        "first_file": "ZM_006A_S01.wav",
+        "last_file": "ZM_206B_S06.wav"
+      },
+      "extracted\\WASR_Zoom\\WASR_Zoom": {
+        "file_count": 120,
+        "total_bytes": 93547252,
+        "first_file": "ZM_018A_S01.wav",
+        "last_file": "ZM_218B_S06.wav"
+      },
+      "extracted\\WinM14_Zoom\\WinM14_Zoom": {
+        "file_count": 62,
+        "total_bytes": 47669556,
+        "first_file": "ZM_019A_S01.wav",
+        "last_file": "ZM_219B_S06.wav"
+      },
+      "metadata": {
+        "file_count": 1,
+        "total_bytes": 23197,
+        "first_file": "gunshot_segments.csv",
+        "last_file": "gunshot_segments.csv"
+      },
+      "processed": {
+        "file_count": 1,
+        "total_bytes": 1288537,
+        "first_file": "processed_dataset_catalog.csv",
+        "last_file": "processed_dataset_catalog.csv"
+      },
+      "processed\\background": {
+        "file_count": 2400,
+        "total_bytes": 76905600,
+        "first_file": "bg_bg_session_00_0000.wav",
+        "last_file": "bg_noise_1199.wav"
+      },
+      "processed\\gunshot": {
+        "file_count": 8000,
+        "total_bytes": 256352000,
+        "first_file": "gun_BoltAction22_Zoom_ZM_004A_S01_w0.wav",
+        "last_file": "gun_zoom_BoltAction22_Zoom_ZM_204B_S06_w0.wav"
+      },
+      "processed\\other_impulse": {
+        "file_count": 2400,
+        "total_bytes": 76905600,
+        "first_file": "other_impulse_0000.wav",
+        "last_file": "other_imp_other_imp_session_29_1199.wav"
+      },
+      "processed\\speech": {
+        "file_count": 2400,
+        "total_bytes": 76905600,
+        "first_file": "speech_ref_0000.wav",
+        "last_file": "speech_speaker_session_29_1199.wav"
+      },
+      "splits": {
+        "file_count": 3,
+        "total_bytes": 1290025,
+        "first_file": "test.csv",
+        "last_file": "validation.csv"
+      }
+    },
+    "sample_hashes": {
+      "data\\extracted\\BoltAction22_Zoom\\BoltAction22_Zoom\\ZM_004A_S01.wav": "1b5eee194401eaf37d8c6bf5d8ed6442523532f789994c8a145822ec9886e06f",
+      "data\\extracted\\BoltAction22_Zoom\\BoltAction22_Zoom\\ZM_204B_S06.wav": "245466f60de2749265f1e3f535dde10c951c70ba642b712ab0d2d8e13a1a69fb",
+      "data\\extracted\\C3GD-Dataset\\C3GD-Dataset\\metadata.csv": "ca152a5fab4a0439839c6d999452e71117b5fab6295c9571fae31d9007bf3d50",
+      "data\\extracted\\C3GD-Dataset\\C3GD-Dataset\\data\\0-oh_farm-czusa_457-ALICE-R5zBOntDcTqx-0.wav": "57aae0bf3d3c814b498d2b550b171fb50caade36d01b7bf2cfcba78535661f1d",
+      "data\\extracted\\C3GD-Dataset\\C3GD-Dataset\\data\\9-oh_farm-winchester_1400-PIXEL-B93my2mvF9Dw-9.wav": "c4d2ddb326da130c89e09418b95e9d194bf5de0ddfd76d83acb13248bd2fcdda",
+      "data\\extracted\\C3GD-Dataset\\C3GD-Dataset\\metadata\\calibers.csv": "488169f44199a276eb97cfa5a40de4cb733ed3683983d0ca5f379eaca71d212a",
+      "data\\extracted\\C3GD-Dataset\\C3GD-Dataset\\metadata\\platforms.csv": "bd85f62cd0286f9780ddd47644ea805bd5e8cbd7285ff0bfa241e85a9e5f4e7b",
+      "data\\extracted\\C3GD-Dataset\\C3GD-Dataset\\scripts\\res\\380ACP-7-7WYYO4zK0hPS-9.wav": "bacc040ce2b1ded755678a64e9ba8762515d56beb2fc8187cce03873bbf9437b",
+      "data\\extracted\\C3GD-Dataset\\C3GD-Dataset\\scripts\\res\\LILYPAD_h0a15a3bcfjs_9mm124tmcgr_15_DOM2-USB.wav": "b27ed3e1be556974e2f85c2ac8edef48bde904a915cb6e5fe49c73cef57bfda5",
+      "data\\extracted\\Colt1911_Zoom\\Colt1911_Zoom\\ZM_015A_S01.wav": "d45fa73413381ddda5d8b268ca2e4c6e75eedd983f13d5cfbe82770a5519d2a8",
+      "data\\extracted\\Colt1911_Zoom\\Colt1911_Zoom\\ZM_215B_S06.wav": "f84fac893169e21e612f5c19ed4a9a13889b65826040a66bb3a103331e210953",
+      "data\\extracted\\edge-collected-gunshot-audio\\gunshot-audio-all-metadata.csv": "219e242ec89b20395fc94ab519387f143b7f748939c7e72aed8a0a32fc804d15",
+      "data\\extracted\\edge-collected-gunshot-audio\\gunshot-audio-labels-only.csv": "d47146cca5dc4713044f2d637cfbab6d6a5e5a957b9158973566216d233374fd",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\38s&ws_dot38_caliber\\03fc4685-909e-42c5-aff0-f519f1d14b12_chan0_v0.wav": "79b43523405e03f7a9518cd95579b523a2f0b7296302651432da51e9d8f074ec",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\38s&ws_dot38_caliber\\ff1d9c73-6178-4b6b-a986-0713b17b84ce_v1.wav": "2f404feb499538b21c49b0e14ffbb88cd61334aa3d26e73a900452fbf954f82d",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\glock_17_9mm_caliber\\019439aa-e146-49da-b59c-28a594fba7e2_v0.wav": "77c894d351011b3eee8a5f21d0694992494eb5a6bfb6f0a96e24d079d71984df",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\glock_17_9mm_caliber\\ff859858-8234-4314-902b-2b9db5efd098_v0.wav": "f077e455910c9c8320c28c9c5e2d04b45d70d447b51bfe406c1dbc62dca4b5a5",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\remington_870_12_gauge\\063b74d6-eb05-437e-b767-14a3248cd10c_chan0_v1.wav": "1dab500f896640eed6c377a88eeff89abc8ed94e99bd6c7b22ccc4175c11dd43",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\remington_870_12_gauge\\ff9e990f-689b-4608-8fc2-790b6a6231e8_v0.wav": "949604724a5ff92402a2cb00d139a44e6faee0af77728f7f37d6de869dbb7d97",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\ruger_ar_556_dot223_caliber\\04187ca0-da31-406a-960b-cb24a97e27a2_v0.wav": "f9afb05051988ac4c31d7bec0b2aad9760b8faac0956e48e4fbe683197f587ec",
+      "data\\extracted\\edge-collected-gunshot-audio\\edge-collected-gunshot-audio\\ruger_ar_556_dot223_caliber\\ff842455-42f4-4c3a-8ab0-0ee2085d1c32_mean_v0.wav": "b2369d203fca4f5a4cb05dbff083c33139bd05e57a5037eab1bd76d6fa5f2bbf",
+      "data\\extracted\\Glock45_Zoom\\Glock45_Zoom\\ZM_014A_S01.wav": "9433fb2d2343f906aafecacba7fb2d15aa034346c27a8e855b7aeb33e7f52bc2",
+      "data\\extracted\\Glock45_Zoom\\Glock45_Zoom\\ZM_214B_S06.wav": "390dfa015019c445b86be7a272795dc6fa3194a146f2b670a204a1c2234c0096",
+      "data\\extracted\\Glock9_Zoom\\Glock9_1_Zoom\\ZM_008A_S01.wav": "3c53a169b1e13c23cc8cba90cb5870c72364d56177bccf90f009b192bb76dec6",
+      "data\\extracted\\Glock9_Zoom\\Glock9_1_Zoom\\ZM_208B_S06.wav": "0c88b10fbf0b39c567580e32b06d58e4f468eaf2f2f21561415d5626adc3769f",
+      "data\\extracted\\Glock9_Zoom\\Glock9_2_Zoom\\ZM_009A_S01.wav": "e717e99ad93d4a15dead82532bc3c5f31915f4eeb79b2a8451fc5d5a6df3643a",
+      "data\\extracted\\Glock9_Zoom\\Glock9_2_Zoom\\ZM_209B_S06.wav": "67491763cf9c59cf94650d2e5329691d86e420672de65bcf6283daad55cc5a21",
+      "data\\extracted\\HKUSP_Zoom\\HKUSP_Zoom\\ZM_013A_S01.wav": "2e92b18926dd6415307c244afc5afea80179ed98236889a59ff6241e18d05744",
+      "data\\extracted\\HKUSP_Zoom\\HKUSP_Zoom\\ZM_213B_S06.wav": "90db8810219f4e2b9b2522fd76b261ee07782ec8ba6dd2669c8570cc2dc6544f",
+      "data\\extracted\\Kimber45_Zoom\\Kimber45_Zoom\\ZM_016A_S01.wav": "e84af13faf66b01e53aba254ce0f577b90e20ac178542b4e6c3a291d482b6477",
+      "data\\extracted\\Kimber45_Zoom\\Kimber45_Zoom\\ZM_216B_S06.wav": "faa743af08ab773ff52d9c8f28bb8c92eeea0eef837d7bf2c58e9af9def6a8ff",
+      "data\\extracted\\Lorcin380_Zoom\\Lorcin380_Zoom\\ZM_005A_S01.wav": "b59ace7445ef499a765c6a59686ec40e7330f2ce5791277efce229e7a8d44e31",
+      "data\\extracted\\Lorcin380_Zoom\\Lorcin380_Zoom\\ZM_205B_S06.wav": "672129bf82ba875f32be0b62576c1ac887940b0687a32cd99d9a2f7e8fe638f8",
+      "data\\extracted\\M16_Zoom\\M16_Zoom\\ZM_017A_S01.wav": "bbed733bdf9456e3304992241d3581950c822689c41b2c91fd4fe1b014db6227",
+      "data\\extracted\\M16_Zoom\\M16_Zoom\\ZM_217B_S06.wav": "6eed0d88958da7efc4fbfc25a73f3c665cad5d689a67ab5d0f0ee02cfa3c74b8",
+      "data\\extracted\\MP40_Zoom\\MP40_1_Zoom\\ZM_011A_S01.wav": "db03eecec3691a789ed6510e74b182f0e8cb196bbd50270ec245fd5e15010457",
+      "data\\extracted\\MP40_Zoom\\MP40_1_Zoom\\ZM_211B_S06.wav": "3b405f5903d09184a39da088249c2df4690e8826a2219569a2624eedfac2feeb",
+      "data\\extracted\\MP40_Zoom\\MP40_2_Zoom\\ZM_012A_S01.wav": "3c749541e59ddbf4314af8a411ef4e38dcb4586772035b279fbfc4188411986b",
+      "data\\extracted\\MP40_Zoom\\MP40_2_Zoom\\ZM_212B_S06.wav": "db463dd036d517f8bedfb124af33b973bb86e08b561eb15d0ac29cd0c4738be6",
+      "data\\extracted\\Rem700_Zoom\\Rem700_Zoom\\ZM_020A_S01.wav": "ef9a0273d69d4ac72df4489a32f0aeb79e5c009cf6bcdbbfaf80cb9bd0c32e72",
+      "data\\extracted\\Rem700_Zoom\\Rem700_Zoom\\ZM_220B_S06.wav": "d03031b3851b4d3d60e2e5320b95d4230e8af7164ec87443cf7414526fa917bd",
+      "data\\extracted\\Ruger22_Zoom\\Ruger22_Zoom\\ZM_003A_S01.wav": "25c873fa16aded3a1608fcfd0703e56dec97169b15169e26907c68cebf0eb074",
+      "data\\extracted\\Ruger22_Zoom\\Ruger22_Zoom\\ZM_203B_S06.wav": "ad1082bfc7c24f422267eb1dd97614c6828a1bfd42b015771524e2eff35045e6",
+      "data\\extracted\\Ruger357_Zoom\\Ruger357_Zoom\\ZM_007A_S01.wav": "7fa1b30efbcc49ac3048811a3f3721aeeb4f1c0726d2381c93c08700d69aaf4f",
+      "data\\extracted\\Ruger357_Zoom\\Ruger357_Zoom\\ZM_207B_S06.wav": "d784beb86868039c7f9b4c1450a74d2f03a2bdda95feb29e304161a3e0f27533",
+      "data\\extracted\\SIG9_Zoom\\SIG9_Zoom\\ZM_010A_S01.wav": "eb4964dfbd244afbde6adf05425ee9629b01eee492b5f072a292c4b04973cd84",
+      "data\\extracted\\SIG9_Zoom\\SIG9_Zoom\\ZM_210B_S06.wav": "fe77facea8091d10fe88dca34b0b4e168363dd5885f3aba8ac8a7f8a71f906f9",
+      "data\\extracted\\SpKing22_Zoom\\SpKing22_Zoom\\ZM_001A_S01.wav": "210e8744c519f4de3e01586448ef2e74385e72f8ba34796f73d30a41660a77eb",
+      "data\\extracted\\SpKing22_Zoom\\SpKing22_Zoom\\ZM_201B_S06.wav": "9723063c15caf0acc2a8d1355aedf8d1d909b823ffeb597738214eaf09106a75",
+      "data\\extracted\\SW22_Zoom\\SW22_Zoom\\ZM_002A_S01.wav": "d523273bc892c9ee058a8b226d0103e062bb8e6f02567baa40fb9ce5b3deff92",
+      "data\\extracted\\SW22_Zoom\\SW22_Zoom\\ZM_202B_S06.wav": "8818041fa112685585e1e92bd96f04f8ec82667b3e9355a4921eefd28002089d",
+      "data\\extracted\\SW38SP_Zoom\\SW38SP_Zoom\\ZM_006A_S01.wav": "f65e046e7be28d73c6265b078d800ad285e2d9910387a0353bbe6ec06da62bc5",
+      "data\\extracted\\SW38SP_Zoom\\SW38SP_Zoom\\ZM_206B_S06.wav": "d930b8a965a19bb882e5a9e5b380f55beadfbf854a170d08324a6bcafe392072",
+      "data\\extracted\\WASR_Zoom\\WASR_Zoom\\ZM_018A_S01.wav": "a2a769dcc65d32c21e2871075c4f20246fec520e541432fa09e9e591b7dce716",
+      "data\\extracted\\WASR_Zoom\\WASR_Zoom\\ZM_218B_S06.wav": "ea452b62b2bb880eb47e42a44dd4d50071f10fba8587f6c8a6b185d0acc19eaa",
+      "data\\extracted\\WinM14_Zoom\\WinM14_Zoom\\ZM_019A_S01.wav": "150dbdb89be4ccd7e231b5a1507d71c080b9ac392ae75130009ecc3a00dc008d",
+      "data\\extracted\\WinM14_Zoom\\WinM14_Zoom\\ZM_219B_S06.wav": "560501eb8bbaa96faff17b3f948fce026598d2def01d8d42b06ba76777d0f5b5",
+      "data\\metadata\\gunshot_segments.csv": "88c796929582f14669b4a1e4f6e630a633e28adbde6e95351ee018f096bb9303",
+      "data\\processed\\processed_dataset_catalog.csv": "98c91f03914defd13c44835cf4f79ec6aeed186f4f075f64bdcadf568bbe370e",
+      "data\\processed\\background\\bg_bg_session_00_0000.wav": "8e6182131cb2e40543559860e102e4b334e9eef89379a45ff23d4b34ef6f038c",
+      "data\\processed\\background\\bg_noise_1199.wav": "53e6c38fb27fc22e1f2aa9b4c7d929cd73136f2802ce92009740be95e5711d7d",
+      "data\\processed\\gunshot\\gun_BoltAction22_Zoom_ZM_004A_S01_w0.wav": "12d48e2ed23043ca7044acd4fd15837b172cf58f785258abf66d5c341f79da40",
+      "data\\processed\\gunshot\\gun_zoom_BoltAction22_Zoom_ZM_204B_S06_w0.wav": "634e1983a84f0180b9acbdeca0aeddf5ae23ec4c9c49ec25d661b2a430d924f7",
+      "data\\processed\\other_impulse\\other_impulse_0000.wav": "00264a846fe7018563a0f08c1cebc6fa694858d7bc69b89fc498962dcc971299",
+      "data\\processed\\other_impulse\\other_imp_other_imp_session_29_1199.wav": "5c9dec612139d8d2368d6070402b32bc588946228eda4c34b45b9cb7ecc3ea17",
+      "data\\processed\\speech\\speech_ref_0000.wav": "a6eaf4b53f10ad9f3c70fb34ef367af0943eff4aeef3a57cac359925efd1e873",
+      "data\\processed\\speech\\speech_speaker_session_29_1199.wav": "e82f5bbc6e1c81d5e47f53079a8186874f59c345ca71d66487206f282338a970",
+      "data\\splits\\test.csv": "5024082771535b5ac16d385fa6c64fdf09e64581d62ae2993b90b2feb5c103d3",
+      "data\\splits\\validation.csv": "dfaf85043a3f66b3cff3e7dd32db691f8c9f2ee099ba48eb8832119a2aa23281"
+    }
+  },
+  "gunsound_archives": {
+    "exists": true,
+    "total_files": 26,
+    "total_bytes": 2466720543,
+    "total_mb": 2352.45,
+    "categories": {
+      ".": {
+        "file_count": 26,
+        "total_bytes": 2466720543,
+        "first_file": "balanced_train_segments.csv",
+        "last_file": "WinM14_Zoom.zip"
+      }
+    },
+    "sample_hashes": {
+      "gunsound\\balanced_train_segments.csv": "3b83e5ff9ed72cfda37d4e36ce08250e107c1ea70f109f6ab6668ac200db5e94",
+      "gunsound\\WinM14_Zoom.zip": "50ce5f90dcdab1d0f63fe1d24dedf0389495c1bae4485a2739c7d82fcad320a7"
+    }
+  }
+}

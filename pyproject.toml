@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pyright]
+include = [
+    ".",
+    "src",
+    "tools",
+    "tests"
+]
+extraPaths = [
+    ".",
+    "src"
+]
+typeCheckingMode = "basic"
+reportMissingImports = false
+reportMissingTypeStubs = false
+
+[tool.mypy]
+mypy_path = "."
+ignore_missing_imports = true

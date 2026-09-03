@@ -18,12 +18,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch
 
-try:
-    from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
-    from src.inference.esp82_reference import ESP82ReferencePipeline
-except ImportError:
-    from ..src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
-    from ..src.inference.esp82_reference import ESP82ReferencePipeline
+from src.training.esp82_student_model import MARKUSBLUE_ESP82_Student
+from src.inference.esp82_reference import ESP82ReferencePipeline
 
 def compute_snr(clean: np.ndarray, estimated: np.ndarray) -> float:
     min_len = min(len(clean), len(estimated))
@@ -201,7 +197,7 @@ def run_full_audit() -> None:
             
             s_pwr = float(np.mean(s_audio ** 2)) + 1e-10
             n_pwr = float(np.mean(n_audio ** 2)) + 1e-10
-            target_snr = float(sc.snr)
+            target_snr = sc.snr
             scaled_noise = n_audio * np.sqrt(s_pwr / (10.0 ** (target_snr / 10.0) * n_pwr))
             noisy_mix = s_audio + scaled_noise
         else:

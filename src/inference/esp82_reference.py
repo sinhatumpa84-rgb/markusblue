@@ -103,7 +103,7 @@ class ESP82ReferencePipeline:
         
         # Stream frame by frame
         for i in range(0, n_samples - self.hop_length + 1, self.hop_length):
-            chunk = audio[i:i + hop_length if 'hop_length' in locals() else i + self.hop_length]
+            chunk = audio[i:i + self.hop_length]
             out_chunk = self.process_frame(chunk)
             enhanced_chunks.append(out_chunk)
             

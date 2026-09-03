@@ -1,0 +1,45 @@
+{
+  "snr_metrics": {
+    "-15dB": {
+      "sisdr_in": -15.07,
+      "sisdr_out": -19.26,
+      "delta_sisdr": -4.18,
+      "delta_snr": 2.23
+    },
+    "-10dB": {
+      "sisdr_in": -10.06,
+      "sisdr_out": -17.25,
+      "delta_sisdr": -7.19,
+      "delta_snr": -2.96
+    },
+    "-5dB": {
+      "sisdr_in": -5.0,
+      "sisdr_out": -16.93,
+      "delta_sisdr": -11.94,
+      "delta_snr": -8.16
+    },
+    "0dB": {
+      "sisdr_in": 0.02,
+      "sisdr_out": -16.57,
+      "delta_sisdr": -16.59,
+      "delta_snr": -13.71
+    },
+    "5dB": {
+      "sisdr_in": 5.01,
+      "sisdr_out": -16.12,
+      "delta_sisdr": -21.13,
+      "delta_snr": -18.94
+    },
+    "10dB": {
+      "sisdr_in": 10.01,
+      "sisdr_out": -15.71,
+      "delta_sisdr": -25.71,
+      "delta_snr": -23.92
+    }
+  },
+  "audio_blanking_test": {
+    "post_impulse_preservation_ratio": 1.788,
+    "clipping_count": 454,
+    "status": "PASSED"
+  }
+}

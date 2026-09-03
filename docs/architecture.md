@@ -1,62 +1,94 @@
-# MARKUSBLUE System Architecture (SIH26052 Real-Time Edge AI)
+# MARKUSBLUE (SIH26052) System Architecture
 
-## 1. End-to-End Tactical Audio Chain
+## 1. Executive Summary
+MARKUSBLUE is an indigenous real-time Edge-AI tactical audio enhancement and active noise cancellation system designed for the Smart India Hackathon problem statement **SIH26052**. The platform processes high-noise combat acoustic environments—including gunfire impulse transients, vehicle engine roar, mechanical impact, and wind noise—to extract and amplify clean human speech with under 10 ms algorithmic processing latency.
+
+---
+
+## 2. Hardware Architecture
 
 ```
-               BATTLEFIELD AUDIO (Speech + Gunfire + Engines)
+                  ┌────────────────────────────────────────┐
+                  │          EXTERNAL NOISE FIELD          │
+                  │ (Gunfire, Vehicle Engines, Wind, Amb)  │
+                  └───────────────────┬────────────────────┘
                                       │
+                              ┌───────▼───────┐
+                              │ INMP441 MIC 1 │
+                              │ (Reference)   │
+                              └───────┬───────┘
+                                      │ I2S (Left Channel)
                                       ▼
                         ┌───────────────────────────┐
-                        │   INMP441 Microphone(s)   │
-                        └─────────────┬─────────────┘
-                                      │ (I2S INT16 PCM)
-                                      ▼
-                        ┌───────────────────────────┐
-                        │ Double-Buffered DMA Audio │
-                        │  (64 samples = 8.0 ms)    │
-                        └─────────────┬─────────────┘
-                                      │
-                                      ▼
-                        ┌───────────────────────────┐
-                        │  Windowed STFT Analysis   │
-                        │  (128-pt Real FFT -> Mag) │
-                        └─────────────┬─────────────┘
-                                      │ [65 spectral bins]
-                                      ▼
-                        ┌───────────────────────────┐
-                        │ MARKUSBLUE INT8 TinyML    │
-                        │ Causal 1D DW-TCN Engine   │
-                        │ (2,948 params, 2.88 KB)   │
-                        └─────────────┬─────────────┘
-                                      │ [65-bin Ideal Ratio Mask]
-                                      ▼
-                        ┌───────────────────────────┐
-                        │  Inverse STFT Synthesis   │
-                        │ (50% Hanning Overlap-Add) │
-                        └─────────────┬─────────────┘
-                                      │
-                                      ▼
-                        ┌───────────────────────────┐
-                        │   VAD & Speech Level AGC  │
-                        │ + Lookahead Peak Limiter  │
-                        └─────────────┬─────────────┘
-                                      │ [Enhanced Clean Audio]
-                                      ▼
-                        ┌───────────────────────────┐
-                        │ MAX98357A / Communication │
+                        │      ESP32-S3 N16R8       │
+                        │ Dual-Core Xtensa @ 240MHz │
+                        │  16MB Flash + 8MB PSRAM   │
+                        │                           │
+                        │  Core 1: Real-Time Audio  │
+                        │   - I2S DMA Capture       │
+                        │   - DC Bias Removal       │
+                        │   - 256-pt Fast STFT      │
+                        │   - Dual-Mic Spatial DSP  │
+                        │   - Causal AI Mask Engine │
+                        │   - Fast ISTFT Overlap-Add│
+                        │   - VAD-Aware Dynamic AGC │
+                        │   - Peak Limiter & Clamp  │
+                        │   - I2S DMA TX Output     │
+                        │                           │
+                        │  Core 0: UI & Telemetry   │
+                        │   - SSD1306 OLED (10 Hz)  │
+                        │   - MPU6050 Motion IMU    │
+                        │   - Debounced PTT & Haptic│
+                        │   - MicroSD Async Logger  │
+                        │   - Battery ADC Monitor   │
                         └─────────────┬─────────────┘
                                       │
+                                      │ I2S (Mono PCM)
                                       ▼
-                           SOLDIER HEARS CLEAR VOICE
+                            ┌───────────────────┐
+                            │    MAX98357A      │
+                            │ Class-D Amplifier │
+                            └─────────┬─────────┘
+                                      │
+                                      ▼
+                              ┌───────────────┐
+                              │  8Ω SPEAKER   │
+                              │ Earphone Unit │
+                              └───────┬───────┘
+                                      │
+                                      ▼
+                                  USER'S EAR
+                                      │
+                              ┌───────▼───────┐
+                              │ INMP441 MIC 2 │
+                              │ (Interior/Ear)│
+                              └───────┬───────┘
+                                      │ I2S (Right Channel)
+                                      └───────► ESP32-S3
 ```
 
 ---
 
-## 2. Hardware Topology & Memory Budget
-- **Microcontroller**: Espressif ESP8266 / ESP-12E (Tensilica Xtensa L106 @ 160 MHz)
-- **Audio Sample Rate**: 8,000 Hz Mono (Tactical & Telephony Voice Band 300–3,400 Hz)
-- **Hop Size**: 64 samples (8.0 ms frame duration)
-- **Window Size**: 128 samples (16.0 ms window)
-- **Total Static RAM**: 5.80 KB (Tensor arena: 3.50 KB, DMA & Ring buffers: 2.30 KB)
-- **Flash Footprint**: 2.88 KB INT8 PROGMEM array (< 0.3% of 1MB flash)
-- **Real-Time Factor (RTF)**: 0.231 (1.85 ms processing time / 8.00 ms frame budget)
+## 3. Streaming Audio Processing Chain
+
+1. **Dual I2S Capture**: 16,000 Hz, 32-bit DMA stereo streaming from Reference (Mic 1) and Ear (Mic 2).
+2. **DC Blocker**: High-pass infinite impulse response filter removes MEMS converter DC offset.
+3. **Sliding Analysis Framing**: Hop size of 64 samples (4.0 ms frame duration) across 256-point Hann window.
+4. **Fast STFT**: 129 positive frequency bins from 0 to 8,000 Hz.
+5. **Spatial Noise Profiling**: Dual-microphone power spectral density smoothing and spatial coherence gating.
+6. **Edge-AI Mask Estimation**: Causal Depthwise-Separable 1D Conv/TCN + GRU estimating bounded Ideal Ratio Mask $M(f, t) \in [0.0, 1.0]$.
+7. **Spectral Filtering**: $\hat{S}(f, t) = Y(f, t) \cdot M(f, t)$ preserving clean phase information.
+8. **Fast ISTFT**: Inverse transform with 50% / 75% overlap-add time-domain synthesis.
+9. **Speech-Aware Dynamic AGC**: Restores muffled speech to -16 dBFS while freezing during non-speech intervals.
+10. **Lookahead Peak Limiter & Safety Clamp**: Sub-millisecond lookahead buffer clamps output strictly within $[-0.999, +0.999]$ to prevent clipping.
+11. **I2S Output**: 16-bit PCM transmitted via DMA to MAX98357A Class-D amplifier driving 8Ω earphone transducer.
+
+---
+
+## 4. Multi-Core FreeRTOS Task Pinning
+
+| Task Name | CPU Core | Priority | Stack Size | Primary Responsibilities |
+| :--- | :--- | :--- | :--- | :--- |
+| **AudioProcessingTask** | **Core 1** | **24 (Highest)** | 8 KB (Internal SRAM) | Real-time I2S RX, STFT, AI inference, ISTFT, AGC, Limiter, I2S TX. Zero blocking calls. |
+| **SystemControlTask** | **Core 0** | **5 (Normal)** | 4 KB | SSD1306 OLED rendering, MPU6050 polling, PTT debouncing, Battery ADC reading. |
+| **SDLoggerTask** | **Core 0** | **2 (Low)** | 4 KB | Async MicroSD diagnostic logging from queue ring buffer. |
