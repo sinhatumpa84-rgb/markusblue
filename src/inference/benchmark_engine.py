@@ -3,7 +3,10 @@ import torch
 import numpy as np
 from typing import Dict
 
-from src.training.models import get_model, get_model_summary
+try:
+    from src.training.models import get_model, get_model_summary
+except ImportError:
+    from training.models import get_model, get_model_summary
 
 def benchmark_full_pipeline(
     model: torch.nn.Module,
