@@ -38,7 +38,10 @@ def export_esp32s3_model():
     model = MARKUSBLUEStudentEnhancer(n_fft=256, hop_length=64, hidden_dim=32)
     
     if os.path.exists(pt_path):
-        model.load_state_dict(torch.load(pt_path, map_location="cpu"))
+        ckpt = torch.load(pt_path, map_location="cpu", weights_only=False)
+        if isinstance(ckpt, dict) and "model_state_dict" in ckpt:
+            ckpt = ckpt["model_state_dict"]
+        model.load_state_dict(ckpt)
         print(f"[*] Loaded trained PyTorch weights from: {pt_path}")
     else:
         print(f"[!] Warning: '{pt_path}' not found! Exporting initialized architecture.")
