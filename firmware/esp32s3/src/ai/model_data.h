@@ -1,6 +1,6 @@
 // MARKUSBLUE (SIH26052) — ESP32-S3 Auto-Generated Model Header
 // Architecture: Causal Depthwise-Separable 1D TCN Speech Enhancement
-// Quantization: INT8 Symmetric (Scale: 3.52755904, ZeroPoint: 0)
+// Quantization: INT8 Symmetric (Scale: 1.58267713, ZeroPoint: 0)
 // Parameters: 18,725
 #ifndef MARKUSBLUE_MODEL_DATA_H_
 #define MARKUSBLUE_MODEL_DATA_H_
