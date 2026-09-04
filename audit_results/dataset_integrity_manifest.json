@@ -1,9 +1,9 @@
 {
   "datasets_primary": {
     "exists": true,
-    "total_files": 13201,
-    "total_bytes": 423003997,
-    "total_mb": 403.41,
+    "total_files": 13702,
+    "total_bytes": 475290128,
+    "total_mb": 453.27,
     "categories": {
       ".": {
         "file_count": 1,
@@ -17,11 +17,323 @@
         "first_file": "bg_bg_session_00_0000.wav",
         "last_file": "bg_noise_1199.wav"
       },
+      "derived\\train": {
+        "file_count": 250,
+        "total_bytes": 26100354,
+        "first_file": "MB_STD_aircraft_001.wav",
+        "last_file": "MB_STD_wind_005.wav"
+      },
+      "external_noise\\aircraft": {
+        "file_count": 5,
+        "total_bytes": 574462,
+        "first_file": "aircraft_001.wav",
+        "last_file": "aircraft_005.wav"
+      },
+      "external_noise\\air_conditioner": {
+        "file_count": 5,
+        "total_bytes": 512732,
+        "first_file": "air_conditioner_001.wav",
+        "last_file": "air_conditioner_005.wav"
+      },
+      "external_noise\\alarms": {
+        "file_count": 5,
+        "total_bytes": 520136,
+        "first_file": "alarms_001.wav",
+        "last_file": "alarms_005.wav"
+      },
+      "external_noise\\armored_vehicle_proxy": {
+        "file_count": 5,
+        "total_bytes": 479346,
+        "first_file": "armored_vehicle_proxy_001.wav",
+        "last_file": "armored_vehicle_proxy_005.wav"
+      },
+      "external_noise\\bus": {
+        "file_count": 5,
+        "total_bytes": 562184,
+        "first_file": "bus_001.wav",
+        "last_file": "bus_005.wav"
+      },
+      "external_noise\\car": {
+        "file_count": 5,
+        "total_bytes": 551008,
+        "first_file": "car_001.wav",
+        "last_file": "car_005.wav"
+      },
+      "external_noise\\chainsaw": {
+        "file_count": 5,
+        "total_bytes": 502390,
+        "first_file": "chainsaw_001.wav",
+        "last_file": "chainsaw_005.wav"
+      },
+      "external_noise\\communication_noise": {
+        "file_count": 5,
+        "total_bytes": 545654,
+        "first_file": "communication_noise_001.wav",
+        "last_file": "communication_noise_005.wav"
+      },
+      "external_noise\\compressor": {
+        "file_count": 5,
+        "total_bytes": 545590,
+        "first_file": "compressor_001.wav",
+        "last_file": "compressor_005.wav"
+      },
+      "external_noise\\construction": {
+        "file_count": 5,
+        "total_bytes": 526004,
+        "first_file": "construction_001.wav",
+        "last_file": "construction_005.wav"
+      },
+      "external_noise\\crowd": {
+        "file_count": 5,
+        "total_bytes": 532906,
+        "first_file": "crowd_001.wav",
+        "last_file": "crowd_005.wav"
+      },
+      "external_noise\\diesel_engine": {
+        "file_count": 5,
+        "total_bytes": 490502,
+        "first_file": "diesel_engine_001.wav",
+        "last_file": "diesel_engine_005.wav"
+      },
+      "external_noise\\doors": {
+        "file_count": 5,
+        "total_bytes": 527616,
+        "first_file": "doors_001.wav",
+        "last_file": "doors_005.wav"
+      },
+      "external_noise\\drilling": {
+        "file_count": 5,
+        "total_bytes": 465520,
+        "first_file": "drilling_001.wav",
+        "last_file": "drilling_005.wav"
+      },
+      "external_noise\\electrical_hum": {
+        "file_count": 5,
+        "total_bytes": 564032,
+        "first_file": "electrical_hum_001.wav",
+        "last_file": "electrical_hum_005.wav"
+      },
+      "external_noise\\explosions_impulse": {
+        "file_count": 5,
+        "total_bytes": 498500,
+        "first_file": "explosions_impulse_001.wav",
+        "last_file": "explosions_impulse_005.wav"
+      },
+      "external_noise\\factory": {
+        "file_count": 5,
+        "total_bytes": 476224,
+        "first_file": "factory_001.wav",
+        "last_file": "factory_005.wav"
+      },
+      "external_noise\\fan": {
+        "file_count": 5,
+        "total_bytes": 534742,
+        "first_file": "fan_001.wav",
+        "last_file": "fan_005.wav"
+      },
+      "external_noise\\footsteps": {
+        "file_count": 5,
+        "total_bytes": 514270,
+        "first_file": "footsteps_001.wav",
+        "last_file": "footsteps_005.wav"
+      },
+      "external_noise\\generator": {
+        "file_count": 5,
+        "total_bytes": 542108,
+        "first_file": "generator_001.wav",
+        "last_file": "generator_005.wav"
+      },
+      "external_noise\\grinding": {
+        "file_count": 5,
+        "total_bytes": 507722,
+        "first_file": "grinding_001.wav",
+        "last_file": "grinding_005.wav"
+      },
+      "external_noise\\gunshot_impulse": {
+        "file_count": 5,
+        "total_bytes": 531834,
+        "first_file": "gunshot_impulse_001.wav",
+        "last_file": "gunshot_impulse_005.wav"
+      },
+      "external_noise\\heavy_engine": {
+        "file_count": 5,
+        "total_bytes": 525870,
+        "first_file": "heavy_engine_001.wav",
+        "last_file": "heavy_engine_005.wav"
+      },
+      "external_noise\\helicopter": {
+        "file_count": 5,
+        "total_bytes": 529284,
+        "first_file": "helicopter_001.wav",
+        "last_file": "helicopter_005.wav"
+      },
+      "external_noise\\hydraulic": {
+        "file_count": 5,
+        "total_bytes": 482588,
+        "first_file": "hydraulic_001.wav",
+        "last_file": "hydraulic_005.wav"
+      },
+      "external_noise\\industrial": {
+        "file_count": 5,
+        "total_bytes": 505754,
+        "first_file": "industrial_001.wav",
+        "last_file": "industrial_005.wav"
+      },
+      "external_noise\\jet_engine": {
+        "file_count": 5,
+        "total_bytes": 537710,
+        "first_file": "jet_engine_001.wav",
+        "last_file": "jet_engine_005.wav"
+      },
+      "external_noise\\machinery": {
+        "file_count": 5,
+        "total_bytes": 495226,
+        "first_file": "machinery_001.wav",
+        "last_file": "machinery_005.wav"
+      },
+      "external_noise\\machinery_impacts": {
+        "file_count": 5,
+        "total_bytes": 515026,
+        "first_file": "machinery_impacts_001.wav",
+        "last_file": "machinery_impacts_005.wav"
+      },
+      "external_noise\\marine_engine": {
+        "file_count": 5,
+        "total_bytes": 556100,
+        "first_file": "marine_engine_001.wav",
+        "last_file": "marine_engine_005.wav"
+      },
+      "external_noise\\metal_impacts": {
+        "file_count": 5,
+        "total_bytes": 566284,
+        "first_file": "metal_impacts_001.wav",
+        "last_file": "metal_impacts_005.wav"
+      },
+      "external_noise\\military_vehicle_proxy": {
+        "file_count": 5,
+        "total_bytes": 481526,
+        "first_file": "military_vehicle_proxy_001.wav",
+        "last_file": "military_vehicle_proxy_005.wav"
+      },
+      "external_noise\\miscellaneous_background": {
+        "file_count": 5,
+        "total_bytes": 463486,
+        "first_file": "miscellaneous_background_001.wav",
+        "last_file": "miscellaneous_background_005.wav"
+      },
+      "external_noise\\motorcycle": {
+        "file_count": 5,
+        "total_bytes": 529986,
+        "first_file": "motorcycle_001.wav",
+        "last_file": "motorcycle_005.wav"
+      },
+      "external_noise\\propeller": {
+        "file_count": 5,
+        "total_bytes": 499094,
+        "first_file": "propeller_001.wav",
+        "last_file": "propeller_005.wav"
+      },
+      "external_noise\\radio_static": {
+        "file_count": 5,
+        "total_bytes": 576842,
+        "first_file": "radio_static_001.wav",
+        "last_file": "radio_static_005.wav"
+      },
+      "external_noise\\railway": {
+        "file_count": 5,
+        "total_bytes": 541752,
+        "first_file": "railway_001.wav",
+        "last_file": "railway_005.wav"
+      },
+      "external_noise\\rain": {
+        "file_count": 5,
+        "total_bytes": 525932,
+        "first_file": "rain_001.wav",
+        "last_file": "rain_005.wav"
+      },
+      "external_noise\\rotorcraft": {
+        "file_count": 5,
+        "total_bytes": 509736,
+        "first_file": "rotorcraft_001.wav",
+        "last_file": "rotorcraft_005.wav"
+      },
+      "external_noise\\ship": {
+        "file_count": 5,
+        "total_bytes": 579818,
+        "first_file": "ship_001.wav",
+        "last_file": "ship_005.wav"
+      },
+      "external_noise\\sirens": {
+        "file_count": 5,
+        "total_bytes": 549136,
+        "first_file": "sirens_001.wav",
+        "last_file": "sirens_005.wav"
+      },
+      "external_noise\\storm": {
+        "file_count": 5,
+        "total_bytes": 529854,
+        "first_file": "storm_001.wav",
+        "last_file": "storm_005.wav"
+      },
+      "external_noise\\thunder": {
+        "file_count": 5,
+        "total_bytes": 552642,
+        "first_file": "thunder_001.wav",
+        "last_file": "thunder_005.wav"
+      },
+      "external_noise\\train": {
+        "file_count": 5,
+        "total_bytes": 462294,
+        "first_file": "train_001.wav",
+        "last_file": "train_005.wav"
+      },
+      "external_noise\\truck": {
+        "file_count": 5,
+        "total_bytes": 532398,
+        "first_file": "truck_001.wav",
+        "last_file": "truck_005.wav"
+      },
+      "external_noise\\turbofan": {
+        "file_count": 5,
+        "total_bytes": 552876,
+        "first_file": "turbofan_001.wav",
+        "last_file": "turbofan_005.wav"
+      },
+      "external_noise\\turboprop": {
+        "file_count": 5,
+        "total_bytes": 472128,
+        "first_file": "turboprop_001.wav",
+        "last_file": "turboprop_005.wav"
+      },
+      "external_noise\\ventilation": {
+        "file_count": 5,
+        "total_bytes": 513958,
+        "first_file": "ventilation_001.wav",
+        "last_file": "ventilation_005.wav"
+      },
+      "external_noise\\vibration": {
+        "file_count": 5,
+        "total_bytes": 505808,
+        "first_file": "vibration_001.wav",
+        "last_file": "vibration_005.wav"
+      },
+      "external_noise\\wind": {
+        "file_count": 5,
+        "total_bytes": 501764,
+        "first_file": "wind_001.wav",
+        "last_file": "wind_005.wav"
+      },
       "gunshot": {
         "file_count": 6000,
         "total_bytes": 192264000,
         "first_file": "gun_BoltAction22_Zoom_ZM_004A_S01_w0.wav",
         "last_file": "gun_C3GD-Dataset_3-ny_gravel_pit-ruger_lcp_380ACP-JON-Wjpg9aiaTIsb-2_w0.wav"
+      },
+      "metadata": {
+        "file_count": 1,
+        "total_bytes": 85423,
+        "first_file": "external_noise_manifest.csv",
+        "last_file": "external_noise_manifest.csv"
       },
       "other_impulse": {
         "file_count": 2400,
@@ -40,8 +352,111 @@
       "datasets\\gunshot_segments.csv": "88c796929582f14669b4a1e4f6e630a633e28adbde6e95351ee018f096bb9303",
       "datasets\\background_noise\\bg_bg_session_00_0000.wav": "8e6182131cb2e40543559860e102e4b334e9eef89379a45ff23d4b34ef6f038c",
       "datasets\\background_noise\\bg_noise_1199.wav": "53e6c38fb27fc22e1f2aa9b4c7d929cd73136f2802ce92009740be95e5711d7d",
+      "datasets\\derived\\train\\MB_STD_aircraft_001.wav": "83d821873d712a6f4cb76e793a48c6b13e45626f62729d570d7a5dcfe9dbca6f",
+      "datasets\\derived\\train\\MB_STD_wind_005.wav": "01d92a3a77e848c3b84da2bc0d0a60125cb2510528df8ea95baad623f568b2ed",
+      "datasets\\external_noise\\aircraft\\aircraft_001.wav": "83d821873d712a6f4cb76e793a48c6b13e45626f62729d570d7a5dcfe9dbca6f",
+      "datasets\\external_noise\\aircraft\\aircraft_005.wav": "cc0aea73ecf98a54bf7e27cb3907be7da06056712765df2dad52272b2e72c2e0",
+      "datasets\\external_noise\\air_conditioner\\air_conditioner_001.wav": "efd8c1b912fc3bc5b4a59b22a81aae4650184dcd87c66549da2a11027142b185",
+      "datasets\\external_noise\\air_conditioner\\air_conditioner_005.wav": "e6aaaca324add56a168edd2cea5f5779460ead39f6a2c9c2dc1075d0dd40fd4e",
+      "datasets\\external_noise\\alarms\\alarms_001.wav": "d143f7aa0af9ed00f2edd2029447b328247f1fbd3125b6eeb558a4f78249ad89",
+      "datasets\\external_noise\\alarms\\alarms_005.wav": "2c58af85f0c1da0689a2075275802c5a16be49a7ebd37ac39ca2730c4df1e6a1",
+      "datasets\\external_noise\\armored_vehicle_proxy\\armored_vehicle_proxy_001.wav": "b89dc384644c83613984f3acbd3e584be14602544e5d8bd1b0a1864d34b9590d",
+      "datasets\\external_noise\\armored_vehicle_proxy\\armored_vehicle_proxy_005.wav": "1e5f6eaa87aea22ea76b58f08b4cffe8b21bbdc7d25a56103fa4869bcfcc0615",
+      "datasets\\external_noise\\bus\\bus_001.wav": "c177e9a38d46a1f2b6a17039bed0af0ee0d1d368e6e63ca271f6c5542b596e27",
+      "datasets\\external_noise\\bus\\bus_005.wav": "3ba59701885e5080ae07445244ed9586b442147dcf2b6ae695ca11603bb7040d",
+      "datasets\\external_noise\\car\\car_001.wav": "36c885ceb095c3a9a4f37102370c5af458ae618600601e36ea50aa8bf3fad5a9",
+      "datasets\\external_noise\\car\\car_005.wav": "431fa3e4317f4ec74a93bbaaaeb877a2e572d6be6f2a5ae6b0155beecf4280f6",
+      "datasets\\external_noise\\chainsaw\\chainsaw_001.wav": "8c51004c3c5eac8da9bf479d4393606732ce5e5f5505f65902a1208d73a8b34f",
+      "datasets\\external_noise\\chainsaw\\chainsaw_005.wav": "4d2a86c65439aac35d941e518f957431e2ab4e7d03f1380679954d2ae0f4dfd3",
+      "datasets\\external_noise\\communication_noise\\communication_noise_001.wav": "8c9cd33b2ddb8b54106eb94aecdc886adf0ffe61cccbdaeab13a1e5726d50178",
+      "datasets\\external_noise\\communication_noise\\communication_noise_005.wav": "ccc6f48efea1f4a2384834d4672d3edf0c7e4af4552a00c2a32cdb57e4e71004",
+      "datasets\\external_noise\\compressor\\compressor_001.wav": "e37c733f7ca6e52a57df3d2e9a68bdc5d74055fdb70bb34285fbde1140122ac7",
+      "datasets\\external_noise\\compressor\\compressor_005.wav": "f5e0fa196ceda29e4dd7918432389eed07b92342a3e1de74d210454ec76cf3b3",
+      "datasets\\external_noise\\construction\\construction_001.wav": "ad4cf2696ece46340799608d1a73af6f9dd8acfabe07e13d33d1969fd51f6771",
+      "datasets\\external_noise\\construction\\construction_005.wav": "0c295f2bc78ef7f6b7b8f7bf905de078e0bf516835c230259eb0a081a026024f",
+      "datasets\\external_noise\\crowd\\crowd_001.wav": "94fbb4e4c2ff9fbdb40b93ad2f251556c2e0056df87c898dd32181b1709db610",
+      "datasets\\external_noise\\crowd\\crowd_005.wav": "74fa8bf583a73a3de8877465c4cba141d60e6b8fa57de64b903aadaa447def31",
+      "datasets\\external_noise\\diesel_engine\\diesel_engine_001.wav": "f95587d274a25e8017576190ec417e11b36f4809f7bb420354675aa95b8b2b1a",
+      "datasets\\external_noise\\diesel_engine\\diesel_engine_005.wav": "b139632872e3d9b33ab5614b1de9ee21f267b2ae1812c6bc5dbd30b02550f995",
+      "datasets\\external_noise\\doors\\doors_001.wav": "e9189a093dd3d5cdc901f9cb850b4a13889c79aebe40bd380facca02814dcbf2",
+      "datasets\\external_noise\\doors\\doors_005.wav": "b31ac7423f7567ff2b1bd0b29daf2f34da5f90b8dc541d0cf45b3f8176c95d01",
+      "datasets\\external_noise\\drilling\\drilling_001.wav": "a37d71fe1b05b0c650df986da939648ba94bc87a75aa4fc76c0414bef7667e15",
+      "datasets\\external_noise\\drilling\\drilling_005.wav": "53cdd695277206295c1e971711d965517ffef501254736bde9cafee1e9b87474",
+      "datasets\\external_noise\\electrical_hum\\electrical_hum_001.wav": "f369127a5c6cb59d5dd16a75c128c1fb3d34e90a0f9eb271acf5c75da03a436c",
+      "datasets\\external_noise\\electrical_hum\\electrical_hum_005.wav": "668ca422cf2a2f20906ce185e2958e702a0554535fc22e1f4b8375ab238606ba",
+      "datasets\\external_noise\\explosions_impulse\\explosions_impulse_001.wav": "b0f37453cf94bea0b74c760c46fefcb86c4ad64dd08cd08980a0b8145adcb167",
+      "datasets\\external_noise\\explosions_impulse\\explosions_impulse_005.wav": "d8d54f5cf63a15ae21d02765476f463127074d96623bd19fc7dbf1c4f03cc5da",
+      "datasets\\external_noise\\factory\\factory_001.wav": "b47de510bce315f1c8bf4415ae277d54bb6643d945569f29893e86628240731d",
+      "datasets\\external_noise\\factory\\factory_005.wav": "7ce6a9800e190dd03ec193cf9d28684bbb30042646df5cf21302ee33b2bf64b3",
+      "datasets\\external_noise\\fan\\fan_001.wav": "0678221c54293a8b1b81b490b57915a0bfa325a57137bf34ce636b4c4447cb74",
+      "datasets\\external_noise\\fan\\fan_005.wav": "dd7201f44703d67372576becd53417cfb71afe0460d73b6bfc6f69909680f7d8",
+      "datasets\\external_noise\\footsteps\\footsteps_001.wav": "7a40076b31d63f1531395c756841d0e8ff697306ad0891e93b0bbeaf189ac376",
+      "datasets\\external_noise\\footsteps\\footsteps_005.wav": "73c037429d9ff2eb8aa09de215d05c71534a591c7455a299771d87c5296a911e",
+      "datasets\\external_noise\\generator\\generator_001.wav": "397976bebdb303f4718f7f8430f274084cbc940f5a78ac55cb94e8155890fe17",
+      "datasets\\external_noise\\generator\\generator_005.wav": "d64af673df1f8b63f28353066e9a5391f5e0d3e1ae35edb1279985c35e986852",
+      "datasets\\external_noise\\grinding\\grinding_001.wav": "7a4427adc8a1c2f8d6eb3bdc39c1bd078a6b69cd2a27ec44c670b4ff8967fc48",
+      "datasets\\external_noise\\grinding\\grinding_005.wav": "8cf2c381fd22c0c84027ae2b05a9788549d86fdf7ac83a9620b4530be2ddbf28",
+      "datasets\\external_noise\\gunshot_impulse\\gunshot_impulse_001.wav": "0018334eef27782cad3d5431a5cb1a27f648a511bb90832e6cc8ba12c2e00d57",
+      "datasets\\external_noise\\gunshot_impulse\\gunshot_impulse_005.wav": "798edc9fcc14bdd0b28360257ce67e82de5414b51af01484b4febf33524b579e",
+      "datasets\\external_noise\\heavy_engine\\heavy_engine_001.wav": "3012c50bfbf1891f89a16f246b10f23b9e43befcbb7c53f2a8eeba54f045ec28",
+      "datasets\\external_noise\\heavy_engine\\heavy_engine_005.wav": "bbda8baf0e5f625054f7e05654b7ef7da9b2d5c587453469f790a52b34627f17",
+      "datasets\\external_noise\\helicopter\\helicopter_001.wav": "ab0bb92452100d87cc6b94a835c8154afcd884e5317f5dce5fda886c2f12c8a7",
+      "datasets\\external_noise\\helicopter\\helicopter_005.wav": "4060832919705afdedef4016389bd42a892b509712dab575f45a0b4e47b4695f",
+      "datasets\\external_noise\\hydraulic\\hydraulic_001.wav": "fd8a47464906e314d0983f9c6efc4e093ad6006e881cb2ce2559d8f0cf8f32b2",
+      "datasets\\external_noise\\hydraulic\\hydraulic_005.wav": "d9bd88d73f346cc0ab5695ab1923cec76e56a19791767360157135884d5c91f1",
+      "datasets\\external_noise\\industrial\\industrial_001.wav": "881edbc5f23ea7a61badbed8cad2ab15ef1a21b91191015a2815f6de95327515",
+      "datasets\\external_noise\\industrial\\industrial_005.wav": "e1a9af88cb8e3b503534bde5c543e8bc60f066117ac997d0b9fcd507636378f9",
+      "datasets\\external_noise\\jet_engine\\jet_engine_001.wav": "b56aaa9d9afd200e509703057713edfc43b50c3d1ba741b2907bb4b0b624cbb4",
+      "datasets\\external_noise\\jet_engine\\jet_engine_005.wav": "0c82373d25f5a31f45ba743a1fa81b034aaa4f212908a5d239d68c884e4570c0",
+      "datasets\\external_noise\\machinery\\machinery_001.wav": "f8d50beac836e9705b89ebe448d776de82b2c54f1267706e1da67dbcc5b75484",
+      "datasets\\external_noise\\machinery\\machinery_005.wav": "48ec9396416a6de3f1c148091f137c4d3bb34e0fd1f7329a119f1d9d082c529a",
+      "datasets\\external_noise\\machinery_impacts\\machinery_impacts_001.wav": "261060989f5ae0c564fccdcbb2d330c536dd3c48bdd674787bf1b87de46895ad",
+      "datasets\\external_noise\\machinery_impacts\\machinery_impacts_005.wav": "2c902c03cdd1e2b9be11df48455a702c982b6543a027a66661492a9a04d1e1cb",
+      "datasets\\external_noise\\marine_engine\\marine_engine_001.wav": "e1491c036a2afa1b78fb63280fbce9b8a6dea4d2e0713bb6015b23f339facf80",
+      "datasets\\external_noise\\marine_engine\\marine_engine_005.wav": "8025ec785f5d91ca6efc70b3ab676006732d0193eff5349a072674912d647741",
+      "datasets\\external_noise\\metal_impacts\\metal_impacts_001.wav": "08007986f8c110f93bdf0f2e8ec8611cbab286b64c00e489b2671bff968242c7",
+      "datasets\\external_noise\\metal_impacts\\metal_impacts_005.wav": "1a34f0c4158bea95a938bb5fd441b711b528530a12cc0505c5599ed8c7129cd9",
+      "datasets\\external_noise\\military_vehicle_proxy\\military_vehicle_proxy_001.wav": "00b0ca353f6f575846139c525f6f0856349b1f7f035fe775501f10f4eb33acf8",
+      "datasets\\external_noise\\military_vehicle_proxy\\military_vehicle_proxy_005.wav": "0dbc38c8367ade79decaedfd44674724e0d3a807814079b15794ac1d8a5a6460",
+      "datasets\\external_noise\\miscellaneous_background\\miscellaneous_background_001.wav": "b1645469c5cf7750814cf7edec54b04732f329fae7b3405041967b0e6ecd0eae",
+      "datasets\\external_noise\\miscellaneous_background\\miscellaneous_background_005.wav": "784f39dce75c380fada563345cbfd2bd8a982b4ee1ffc199067070bea3d55234",
+      "datasets\\external_noise\\motorcycle\\motorcycle_001.wav": "83ba43002d528e3ce6c67c093e3868470917bb7a85838e0c02ed7a0336018d6b",
+      "datasets\\external_noise\\motorcycle\\motorcycle_005.wav": "7eac6d66d3ae1692b1828ce79bcb0afb42abccd1de09a824094e0926fbe058c7",
+      "datasets\\external_noise\\propeller\\propeller_001.wav": "ef3393bb13eb1c418dc460c477f8f4ff63ae46714d7e390cdaf8970c37e60dba",
+      "datasets\\external_noise\\propeller\\propeller_005.wav": "c9805deadb65ad69513f7e5efe80d51934682c976d7ae1b5a841656941b523f6",
+      "datasets\\external_noise\\radio_static\\radio_static_001.wav": "7918965a2db0601f8461f197af417368b817b3e451290da0c7ba1b43de536aff",
+      "datasets\\external_noise\\radio_static\\radio_static_005.wav": "b1a913fbf21373e472c03bf6dbddd7e2b075dc0ef3575b01c049ab321643de11",
+      "datasets\\external_noise\\railway\\railway_001.wav": "15b56ebafb233ceda2213c4a806a4d634ee822614d83bf125129ad47f8a12f82",
+      "datasets\\external_noise\\railway\\railway_005.wav": "7b05e779de31a81f7a55a94b3cac64c55b8724ddc583621a9bf0f956af86e671",
+      "datasets\\external_noise\\rain\\rain_001.wav": "5bc1642ed59ffc672da87f2761596bd6d5c8124072be6dde6ded87e225a5daa2",
+      "datasets\\external_noise\\rain\\rain_005.wav": "3952f4c04696800592dfa31bf062fdb8d8d38788bd428d5432f9641c37d6adee",
+      "datasets\\external_noise\\rotorcraft\\rotorcraft_001.wav": "ee77216784fd27418696852064a9faf54c4e17d81f7ecf5e7d80ccbd639220d0",
+      "datasets\\external_noise\\rotorcraft\\rotorcraft_005.wav": "b8d7e832fb66345a39e3a3ef84a6b835cba109874970d0cf0e2ff2370a9dc7c5",
+      "datasets\\external_noise\\ship\\ship_001.wav": "f85ae2fa565319789d30fcdc3f49d82573bb0c7cb7a2321dc8407e175b006c92",
+      "datasets\\external_noise\\ship\\ship_005.wav": "c3dab924142e3bec9f268121e463f60d85049180c829ce5672655dfa5325e801",
+      "datasets\\external_noise\\sirens\\sirens_001.wav": "904cf251c61269d627ebcea9b94a2c5877a72b19b1d94187618b397cc2e37cde",
+      "datasets\\external_noise\\sirens\\sirens_005.wav": "2548e6d9a3a1ddc247672649dd8ca704c5afe408b1523199558ab7a73c2586aa",
+      "datasets\\external_noise\\storm\\storm_001.wav": "a73c921c0e2a0ddbe323b0c2f1f807314e3c6b95f793461263e7338a9629fb32",
+      "datasets\\external_noise\\storm\\storm_005.wav": "1efbf5de93fd4a4c0ebb44c152a9c2af61f8e69a50d1903e6db959da2d2fddfa",
+      "datasets\\external_noise\\thunder\\thunder_001.wav": "69bfc4237cc77b543e4e88564706e6d20a217b74a747eb5563380c5c955f2cf6",
+      "datasets\\external_noise\\thunder\\thunder_005.wav": "6dedb466f110b7a63b6ee582e7372ddd0a35171e85f9fc4e0190774228a8a444",
+      "datasets\\external_noise\\train\\train_001.wav": "701666a8cabe9c8d50b84954a7123bbe0a7256aaef8719f7b0a8242d3323d463",
+      "datasets\\external_noise\\train\\train_005.wav": "d6306df0027f3ddd4abdf7cde0595b09a7c2c145c0f9427fa23bcc0dc9a9172b",
+      "datasets\\external_noise\\truck\\truck_001.wav": "102c2295824f67c5ae416d3d9418244b1903358b632a09e85ef187ffd26f4a14",
+      "datasets\\external_noise\\truck\\truck_005.wav": "b4d63f5d8bb8f2f02440ce86c9d188a90264076b24d577c64145b72987cd271f",
+      "datasets\\external_noise\\turbofan\\turbofan_001.wav": "4c71b5f210099b8906c1a2683595ca1b4b9ac9e6dbd4803f887e6c8d1247144c",
+      "datasets\\external_noise\\turbofan\\turbofan_005.wav": "a9efa8fc5e67f53e0f318ff2465ddf3cdacefef00cb79c258d6595640375bb2a",
+      "datasets\\external_noise\\turboprop\\turboprop_001.wav": "6a849080de47bac8a56012982b0099efe58176e8317949b4bb85e5bff3575d65",
+      "datasets\\external_noise\\turboprop\\turboprop_005.wav": "31dc2657a8777e0207098f87939a4b11cb51390f84af5f2a0b2ecf06922fc141",
+      "datasets\\external_noise\\ventilation\\ventilation_001.wav": "f3e5d8661078050eb64f32cb474d4182b22088ba80826f7a190917105bf7a657",
+      "datasets\\external_noise\\ventilation\\ventilation_005.wav": "06ee2c0de65ef907fbfc2214729e8cb8e61d15e6ed9f5fedcd7f7b871816ae5a",
+      "datasets\\external_noise\\vibration\\vibration_001.wav": "d3e6788b11bb624c446ca1e3113588a4b5f9f31b58c465272a4ff59aa04421fe",
+      "datasets\\external_noise\\vibration\\vibration_005.wav": "4e2f18a98aac31c6d200298502459e8e94202af24c79681a0354cf60cdf2d3a5",
+      "datasets\\external_noise\\wind\\wind_001.wav": "df3c7851460fe6759ac8033503fe6a82960c8297dafe37fe7cb525dfeb2d7e64",
+      "datasets\\external_noise\\wind\\wind_005.wav": "01d92a3a77e848c3b84da2bc0d0a60125cb2510528df8ea95baad623f568b2ed",
       "datasets\\gunshot\\gun_BoltAction22_Zoom_ZM_004A_S01_w0.wav": "12d48e2ed23043ca7044acd4fd15837b172cf58f785258abf66d5c341f79da40",
       "datasets\\gunshot\\gun_C3GD-Dataset_3-ny_gravel_pit-ruger_lcp_380ACP-JON-Wjpg9aiaTIsb-2_w0.wav": "e616ce477e37e36e88423559db25e63e8edd637aa7a638f432e2ba6d98eb0872",
+      "datasets\\metadata\\external_noise_manifest.csv": "b58d32d41931c05a40eab633ec2c930adfb4f1e2bca2671b85b1824343ce381d",
       "datasets\\other_impulse\\other_impulse_0000.wav": "00264a846fe7018563a0f08c1cebc6fa694858d7bc69b89fc498962dcc971299",
       "datasets\\other_impulse\\other_imp_other_imp_session_29_1199.wav": "5c9dec612139d8d2368d6070402b32bc588946228eda4c34b45b9cb7ecc3ea17",
       "datasets\\speech\\speech_ref_0000.wav": "a6eaf4b53f10ad9f3c70fb34ef367af0943eff4aeef3a57cac359925efd1e873",
