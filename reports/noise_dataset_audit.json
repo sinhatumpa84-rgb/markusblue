@@ -1,0 +1,17 @@
+{
+  "status": "PASSED",
+  "total_files_audited": 2220,
+  "suppressible_files_count": 1500,
+  "critical_files_count": 720,
+  "corrupted_files_count": 0,
+  "zero_length_count": 0,
+  "silence_only_count": 0,
+  "clipped_files_count": 0,
+  "invalid_sr_count": 0,
+  "duplicate_hashes_count": 0,
+  "duplicates": [],
+  "missing_metadata_count": 0,
+  "unverified_licenses_count": 0,
+  "data_leakage_detected": false,
+  "target_sample_rate": 16000
+}
