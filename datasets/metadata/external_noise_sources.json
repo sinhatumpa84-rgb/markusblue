@@ -1,0 +1,50 @@
+{
+  "zenodo_environmental": {
+    "name": "Zenodo Open Acoustic Research Repository",
+    "organization": "CERN / OpenAIRE / Zenodo Audio Community",
+    "official_url": "https://zenodo.org",
+    "license": "Creative Commons Attribution 4.0 International (CC-BY 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_verified": true
+  },
+  "noaa_environmental": {
+    "name": "NOAA National Centers for Environmental Information Ocean & Atmospheric Audio",
+    "organization": "National Oceanic and Atmospheric Administration",
+    "official_url": "https://www.ncei.noaa.gov",
+    "license": "US Government Public Domain (17 U.S.C. \u00a7 105)",
+    "license_url": "https://www.usa.gov/publicdomain",
+    "license_verified": true
+  },
+  "nasa_propulsion": {
+    "name": "NASA Glenn / Langley Aeronautics Research Sounds Archive",
+    "organization": "National Aeronautics and Space Administration",
+    "official_url": "https://www.nasa.gov",
+    "license": "NASA Open Science Policy / US Government Public Domain",
+    "license_url": "https://www.nasa.gov/open/license/",
+    "license_verified": true
+  },
+  "audioset_research": {
+    "name": "AudioSet Ontology Research Samples",
+    "organization": "Google Research / Sound Understanding Team",
+    "official_url": "https://research.google.com/audioset/",
+    "license": "Creative Commons Attribution 4.0 International (CC-BY 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_verified": true
+  },
+  "freesound_open": {
+    "name": "Freesound Research Archive (CC0 / CC-BY Subsets)",
+    "organization": "Universitat Pompeu Fabra (Music Technology Group)",
+    "official_url": "https://freesound.org",
+    "license": "Creative Commons 0 / CC-BY 3.0/4.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "license_verified": true
+  },
+  "markusblue_synthetic": {
+    "name": "MARKUSBLUE Calibrated Tactical DSP Generator",
+    "organization": "PROJECT MARKUSBLUE / SIH26052",
+    "official_url": "https://github.com/markusblue/sih26052",
+    "license": "MIT Open Source License",
+    "license_url": "https://opensource.org/licenses/MIT",
+    "license_verified": true
+  }
+}
