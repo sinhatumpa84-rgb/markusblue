@@ -148,30 +148,77 @@ MARKUSBLUE/
 │   ├── speech/                          # 2,400 clean speech utterances
 │   ├── gunshot/                         # 6,000 gunfire impulse recordings
 │   ├── background_noise/                # 2,400 vehicle/ambient noise files
-│   └── other_impulse/                   # 2,400 mechanical impact recordings
+│   ├── other_impulse/                   # 2,400 mechanical impact recordings
+│   ├── external_noise/
+│   │   └── suppressible/                # 15 suppressible classes (1,500 files: engines, aircraft, wind, etc.)
+│   ├── critical_audio/                  # 7 critical classes (720 files: speech, radio, alarms, sirens, footsteps)
+│   ├── metadata/                        # Manifests (external_noise_manifest.csv, critical_audio_manifest.csv)
+│   └── derived/                         # Standardized 16kHz train/val/test splits
 │
 ├── hardware/
-│   ├── pinout.md                        # Complete GPIO allocation matrix
+│   ├── block_diagram.md                 # Complete system block diagram & interconnects
+│   ├── wiring.md                        # Pin-to-pin electrical wiring & differential shielding
+│   ├── pinout.md                        # Complete GPIO allocation matrix & bus rules
 │   ├── power_tree.md                    # Power architecture & battery runtime budget
-│   └── wiring.md                        # Electrical interconnects & acoustic isolation
+│   ├── audio_signal_path.md             # Dual-microphone acoustic path & timing breakdown
+│   ├── hardware_bom.md                  # Bill of materials with part numbers & INR costs
+│   ├── assembly.md                      # Physical prototype mechanical assembly guide
+│   └── troubleshooting.md               # Hardware diagnostic runbook & fault isolation
 │
 ├── docs/
 │   ├── architecture.md                  # Comprehensive technical architecture
 │   ├── audio_pipeline.md                # Streaming DSP pipeline details
 │   ├── model_deployment.md              # Model quantization & PROGMEM deployment
 │   ├── hardware_validation.md           # Multi-level testing strategy
+│   ├── dataset_expansion.md             # External noise sourcing & licensing
+│   ├── noise_dataset_statistics.md      # Category metrics & duration distribution
+│   ├── field_readiness.md               # Field readiness evaluation vs battlefield requirements
+│   ├── army_demo_plan.md                # Step-by-step Army / DRDO live demonstration plan
+│   ├── limitations.md                   # Transparent technical and mechanical limitations
 │   ├── sih26052_mapping.md              # SIH problem statement compliance matrix
 │   └── validation_report.md             # 25-point final system validation report
 │
+├── reports/
+│   ├── FINAL_MARKUSBLUE_READINESS_REPORT.md # Authoritative 21-section readiness report & verdict
+│   ├── army_drdo_gap_analysis.md        # Prototype vs MIL-STD-810H/461G qualification gap analysis
+│   ├── latency_benchmark.md             # Algorithmic & acoustic timing benchmark
+│   ├── esp32s3_resource_benchmark.md    # Static memory map & dual-core CPU utilization
+│   ├── power_benchmark.md               # Power tree calculations & battery life estimates
+│   ├── anti_blanking_validation.md      # Transient impulse recovery & zero-blanking report
+│   ├── human_listening_evaluation.md    # Subjective MOS perceptual evaluation report
+│   ├── dataset_cleanup_plan.md          # Pre-restructuring dataset classification plan
+│   ├── perceptual_audio_evaluation.md   # Objective listening quality report
+│   ├── final_operational_acoustic_dataset_report.md # 23-point system verification matrix
+│   └── noise_dataset_audit.json         # Automated dataset quality & zero-leakage audit
+│
+├── src/                                 # Signal processing & dataset utilities
+│   └── dataset/
+│       └── multi_noise_mixer.py         # Critical-preserving mixer with dynamic envelopes
+│
 ├── tests/
 │   ├── test_dsp.py                      # Unit tests for STFT, ISTFT, AGC, limiter
-│   └── test_enhancement_pipeline.py     # Pipeline integration & blanking recovery tests
+│   ├── test_enhancement_pipeline.py     # Pipeline integration & blanking recovery tests
+│   ├── test_noise_mixer.py              # Multi-source dynamic mixing & temporal envelopes
+│   ├── test_dataset_integrity.py        # 100% baseline dataset invariant test
+│   ├── test_snr.py                      # Mathematical precision tests for SNR
+│   ├── test_model_input.py              # 129-bin STFT dimension & latency test
+│   ├── test_critical_audio_preservation.py # Speech, alarm, siren, and footstep preservation tests
+│   ├── test_tactical_audio_regression.py   # Multi-SNR (-15dB to +20dB) multi-speaker regression
+│   └── test_fault_injection.py          # Simulated mic disconnect, NaN/Inf, safe bypass fallback
 │
 ├── tools/
 │   ├── sih_demo_suite.py                # Interactive tactical demonstration suite
 │   ├── verify_datasets.py               # SHA-256 dataset integrity verification tool
+│   ├── build_operational_dataset.py     # Operational dataset builder (100+ files per class)
+│   ├── audit_noise_dataset.py           # Noise quality, clipping & leakage auditor
 │   ├── train_esp32s3_student.py         # PyTorch student model trainer
-│   └── export_esp32s3_model.py          # Quantization & C++ header generation tool
+│   ├── export_esp32s3_model.py          # Quantization & C++ header generation tool
+│   └── final_global_audit.py            # Automated zero-leakage validator
+│   ├── download_external_noise.py       # Multi-source noise acquisition & generator
+│   ├── audit_noise_dataset.py           # Noise quality, clipping & leakage auditor
+│   ├── train_esp32s3_student.py         # PyTorch student model trainer
+│   ├── export_esp32s3_model.py          # Quantization & C++ header generation tool
+│   └── final_global_audit.py            # Automated zero-leakage validator
 │
 └── requirements.txt                     # Clean minimal Python dependencies
 ```
