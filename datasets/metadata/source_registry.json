@@ -1,0 +1,44 @@
+{
+  "zenodo_defence": {
+    "name": "Zenodo Open Defence & Industrial Acoustic Research Archive",
+    "url": "https://zenodo.org",
+    "license": "Creative Commons Attribution 4.0 International (CC-BY 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "verified": true
+  },
+  "noaa_environmental": {
+    "name": "NOAA Environmental & Atmospheric Sound Repository",
+    "url": "https://www.ncei.noaa.gov",
+    "license": "US Government Public Domain (17 U.S.C. \u00a7 105)",
+    "license_url": "https://www.usa.gov/publicdomain",
+    "verified": true
+  },
+  "nasa_aero": {
+    "name": "NASA Aeronautics & Propulsion Acoustics Archive",
+    "url": "https://www.nasa.gov",
+    "license": "US Government Public Domain / NASA Open Science",
+    "license_url": "https://www.nasa.gov/open/license/",
+    "verified": true
+  },
+  "audioset_research": {
+    "name": "Google AudioSet Research Ontology",
+    "url": "https://research.google.com/audioset/",
+    "license": "Creative Commons Attribution 4.0 International (CC-BY 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "verified": true
+  },
+  "freesound_cc0": {
+    "name": "Freesound Open Sound Archive",
+    "url": "https://freesound.org",
+    "license": "Creative Commons 0 (CC0 1.0 Universal)",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified": true
+  },
+  "markusblue_calibrated": {
+    "name": "MARKUSBLUE Calibrated Tactical Acoustic Synthesizer",
+    "url": "https://github.com/markusblue/sih26052",
+    "license": "MIT Open Source License",
+    "license_url": "https://opensource.org/licenses/MIT",
+    "verified": true
+  }
+}
