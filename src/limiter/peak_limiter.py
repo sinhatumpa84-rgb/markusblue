@@ -50,6 +50,6 @@ class PeakSafetyLimiter:
             else:
                 self.gain = self.alpha_release * self.gain + (1.0 - self.alpha_release) * target_gain
                 
-            out[i] = np.clip(delayed_sample * self.gain, -1.0, 1.0)
+            out[i] = np.clip(delayed_sample * self.gain, -self.ceiling, self.ceiling)
             
         return out
