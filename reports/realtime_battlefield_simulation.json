@@ -1,0 +1,17 @@
+{
+  "mean_latency_us": 11158.477439824492,
+  "max_latency_us": 314839.60000332445,
+  "p95_latency_us": 28119.88999892492,
+  "frame_budget_us": 4000.0,
+  "rtf": 2.7896193599561228,
+  "buffer_overruns": 881,
+  "total_frames": 1250,
+  "stoi_in": 0.6991844225147584,
+  "stoi_out": 0.7633819586302423,
+  "delta_stoi": 0.06419753611548384,
+  "audio_files": {
+    "reference": "reports/audio_demonstrations\\battlefield_sim_reference_speech.wav",
+    "input": "reports/audio_demonstrations\\battlefield_sim_input_noisy.wav",
+    "output": "reports/audio_demonstrations\\battlefield_sim_output_clean.wav"
+  }
+}

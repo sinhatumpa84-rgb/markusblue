@@ -1,0 +1,17 @@
+{
+  "project": "MARKUSBLUE",
+  "problem_statement": "SIH26052",
+  "version": "v7.1.00",
+  "target_mcu": "ESP32-S3 N16R8",
+  "sample_rate_hz": 16000,
+  "n_fft": 256,
+  "num_bins": 129,
+  "hop_length": 64,
+  "parameter_count": 18725,
+  "fp32_size_bytes": 74900,
+  "int8_size_bytes": 18725,
+  "int8_scale": 3.377952814102173,
+  "int8_zero_point": 0,
+  "sha256_fp32": "1643a8fefc6c250de489bd0a59929c45675ce432ced4c5073dd41f900e3b2e73",
+  "sha256_int8": "61f0ba84213882298bb7a118897e244af8ed423e00d928545ce4b73530ba255c"
+}
